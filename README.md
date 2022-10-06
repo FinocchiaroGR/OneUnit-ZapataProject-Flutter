@@ -1,26 +1,37 @@
-# one-unit-zapata-project
+# Welcome to OneUnit-Zapata-Project
 
-a [Sails v1](https://sailsjs.com) application
+### Deployment Instrucctions in AWS Server
 
++ Create AWS Server Ubuntu Free Tier (Minimun 8Gb Storage).
++ OPTIONAL Create Key Pairs for easy access to SSH console.
++ Create a security group allowing "ALL TRAFFIC" "IN" through port 1337, and "ALL TRAFFIC" through all ports "OUT".
++ Set Security group to AWS Instance Ubuntu Server (Inside the Instance: Actions -> Security -> Change Security Groups).
++ Get access to the server either with SSH or Cloudshell.
++ Access root user with "sudo su"
++ Install Node.js v18.x: "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -"
++ Install Sails.js framework "npm install sails -g".
++ Update Node.js v19x with "npm install -g npm@8.19.1".
++ Install PostgreSQL-contrib with "sudo apt install postgresql postgresql-contrib".
++ Start PostgreSQL service with "sudo systemctl start postgresql.service".
++ Access postgres user with "sudo -i -u postgres".
++ Run database manager with "psql".
++ Change postgres password "ALTER USER postgres PASSWORD 'test';".
++ Create database with "CREATE DATABASE zapata;".
++ Run "\q".
++ Run "exit".
++ Clone repository "git clone https://github.com/FinocchiaroGR/OneUnit-ZapataProject.git".
++ Change branch "git checkout testGps".
++ Run "cd OneUnit-ZapataProject/".
++ Run "nano config/datastores.js".
++ Modify line url: "postgresql://postgres:test@localhost:5432/zapata".
++ Run "npm install".
++ Run "sails lift".
 
-### Links
+### ENDPOINTS
 
-+ [Sails framework documentation](https://sailsjs.com/get-started)
-+ [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
-+ [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
-+ [Community support options](https://sailsjs.com/support)
-+ [Professional / enterprise options](https://sailsjs.com/enterprise)
++ 
 
 
 ### Version info
 
-This app was originally generated on Sat Sep 03 2022 13:09:10 GMT-0500 (Central Daylight Time) using Sails v1.5.3.
-
-<!-- Internally, Sails used [`sails-generate@2.0.7`](https://github.com/balderdashy/sails-generate/tree/v2.0.7/lib/core-generators/new). -->
-
-
-
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
-
++ Version 0.1
