@@ -39,3 +39,6 @@ dist/
 built/
 reports/
 
+package_config.json
+package_config_subset
+package_config_subset
