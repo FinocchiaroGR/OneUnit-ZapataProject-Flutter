@@ -17,12 +17,12 @@ class AppTypography extends StatelessWidget {
   };
 
   const AppTypography({
-    Key? key,
+    super.key,
     required this.text,
     this.type = "body1",
     this.color = app_colors.primary,
     this.align = TextAlign.left,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
