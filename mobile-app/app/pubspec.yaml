@@ -80,22 +80,23 @@ flutter:
       fonts:
         - asset: fonts/Helvetica/Bold/HelveticaNeueCyr-Bold.ttf
           weight: 700
-        - assset: fonts/Helvetica/BoldItalic/HelveticaNeueCyr-BoldItalic.ttf
+        - asset: fonts/Helvetica/BoldItalic/HelveticaNeueCyr-BoldItalic.ttf
           weight: 700
           style: italic
-        - assset: fonts/Helvetica/Italic/HelveticaNeueCyr-Italic.ttf
+        - asset: fonts/Helvetica/Italic/HelveticaNeueCyr-Italic.ttf
           style: italic
         - asset: fonts/Helvetica/Light/HelveticaNeueCyr-Light.ttf
-          weith: 300
+          weight: 300
         - asset: fonts/Helvetica/Medium/HelveticaNeueCyr-Medium.ttf
           weight: 500
+
     - family: Browallia
       fonts:
         - asset: fonts/BrowalliaNew/Bold/BrowalliaNew-Bold.ttf
           weight: 700
-        - assset: fonts/BrowalliaNew/BoldItalic/BrowalliaNew-BoldItalic.ttf
+        - asset: fonts/BrowalliaNew/BoldItalic/BrowalliaNew-BoldItalic.ttf
           weight: 700
           style: italic
-        - assset: fonts/BrowalliaNew/Italic/BrowalliaNew-Italic.ttf
+        - asset: fonts/BrowalliaNew/Italic/BrowalliaNew-Italic.ttf
           style: italic
         - asset: fonts/BrowalliaNew/Regular/BrowalliaNew.ttf
