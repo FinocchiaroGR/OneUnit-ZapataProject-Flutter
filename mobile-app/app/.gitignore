@@ -42,3 +42,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/android/local.properties
+/.dart_tool/package_config_subset
+/.dart_tool/package_config
