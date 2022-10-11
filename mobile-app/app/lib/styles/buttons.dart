@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "./colors.dart" as app_colors;
-import "./textStyles.dart" as app_styles;
+import './colors.dart' as app_colors;
+import './textStyles.dart' as app_styles;
 
 final ButtonStyle primary = ElevatedButton.styleFrom(
   backgroundColor: app_colors.primary,

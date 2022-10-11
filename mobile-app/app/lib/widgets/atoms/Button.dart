@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "../../styles/buttons.dart" as app_buttons;
+import 'package:app/styles/buttons.dart' as app_buttons;
 
 class AppButton extends StatelessWidget {
   final VoidCallback? onPressed;

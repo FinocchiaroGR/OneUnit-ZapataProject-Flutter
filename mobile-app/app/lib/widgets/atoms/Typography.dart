@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import "../../styles/colors.dart" as app_colors;
-import "../../styles/textStyles.dart" as app_styles;
+import 'package:app/styles/colors.dart' as app_colors;
+import 'package:app/styles/textStyles.dart' as app_styles;
 
 class AppTypography extends StatelessWidget {
   final String text;
