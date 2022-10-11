@@ -18,7 +18,17 @@ class AppBottomNavigation extends StatelessWidget {
             icon: Icon(app_icons.user),
             label: "Usario",
             backgroundColor: app_colors.secondary,
-          )
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(app_icons.home),
+            label: "Inicio",
+            backgroundColor: app_colors.secondary,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(app_icons.help),
+            label: "Ayuda",
+            backgroundColor: app_colors.secondary,
+          ),
         ],
         currentIndex: page.getIndex(),
         onTap: page.setIndex,
