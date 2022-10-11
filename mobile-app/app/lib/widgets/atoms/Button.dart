@@ -25,7 +25,7 @@ class AppButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: currentStyle,
-      child: Text(text),
+      child: Text(text.toUpperCase()),
     );
   }
 }

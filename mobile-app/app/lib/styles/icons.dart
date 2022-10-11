@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-const arrowLeft = Icon(Icons.arrow_back_ios_new_sharp);
-const arrowRight = Icon(Icons.arrow_forward_ios_sharp);
-const documents = Icon(Icons.assignment_sharp);
-const contact = Icon(Icons.whatsapp_sharp);
-const service = Icon(Icons.construction_sharp);
-const sellCar = Icon(Icons.car_rental_sharp);
-const home = Icon(Icons.home_sharp);
-const user = Icon(Icons.person_sharp);
-const help = Icon(Icons.help_sharp);
+const arrowLeft = Icons.arrow_back_ios_new_sharp;
+const arrowRight = Icons.arrow_forward_ios_sharp;
+const documents = Icons.assignment_sharp;
+const contact = Icons.whatsapp_sharp;
+const service = Icons.construction_sharp;
+const sellCar = Icons.car_rental_sharp;
+const home = Icons.home_sharp;
+const user = Icons.person_sharp;
+const help = Icons.help_sharp;
 
 /*
 const person = Icon(Icons.person);

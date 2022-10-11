@@ -1,6 +1,9 @@
+import 'package:app/widgets/atoms/Button.dart';
+import 'package:app/widgets/molecules/IconButton.dart';
 import 'package:flutter/material.dart';
 import "./widgets/atoms/Typography.dart";
 import "./styles/colors.dart" as app_colors;
+import "./styles/icons.dart" as app_icons;
 
 void main() {
   runApp(MaterialApp(
@@ -8,8 +11,8 @@ void main() {
     color: Colors.white,
     home: Scaffold(
       body: SafeArea(
-          child: Wrap(
-        children: const <AppTypography>[
+          child: Column(
+        children: <Widget>[
           AppTypography(
             align: TextAlign.left,
             type: "h1",
@@ -46,6 +49,9 @@ void main() {
             text: "This is a body2",
             color: app_colors.primary,
           ),
+          AppButton(text: "Click here", onPressed: () => {}),
+          AppIconButton(
+              text: "Some text", icon: app_icons.sellCar, onPressed: () => {})
         ],
       )),
     ),

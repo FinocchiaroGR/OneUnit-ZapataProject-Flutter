@@ -26,8 +26,7 @@ class AppTypography extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentStyle = _stylesMap[type];
-    currentStyle!.apply(color: color);
+    final currentStyle = _stylesMap[type]!.apply(color: color);
 
     return Text(
       text,
