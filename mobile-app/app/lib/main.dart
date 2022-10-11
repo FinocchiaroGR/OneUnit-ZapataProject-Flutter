@@ -43,7 +43,7 @@ void main() {
             text: "This is a body1",
             color: app_colors.primary,
           ),
-          AppTypography(
+          const AppTypography(
             align: TextAlign.left,
             type: "body2",
             text: "This is a body2",
