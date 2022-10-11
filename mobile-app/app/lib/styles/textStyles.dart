@@ -1,54 +1,46 @@
-
 import 'dart:ui';
-import './colors.dart';
-
 import 'package:flutter/cupertino.dart';
 
-const styleH1 = TextStyle(
-  fontFamily: 'HelveticaNeue',            // Falta importarla en pubspec
-  fontFamilyFallback: ['BrowalliaNew'],   // Segun internet es flutter todavia no soporta por completo tipografia segundaria.. esto es lo maximo que pude encontrar.
+import './colors.dart' as appColors;
+
+const h1 = TextStyle(
+  fontSize: 52,
+  fontFamily: 'Browallia',
   fontWeight: FontWeight.w700,
-  fontSize: 72.0,
-  color: primario);
+  color: appColors.primary,
+);
 
-const styleH2 = TextStyle(
-  fontFamily: 'HelveticaNeue',            // Falta importarla en pubspec
-  fontFamilyFallback: ['BrowalliaNew'],
+const h2 = TextStyle(
+  fontSize: 44,
+  fontFamily: 'Browallia',
   fontWeight: FontWeight.w700,
-  fontSize: 45.0,
-  color: primario);
+  color: appColors.primary,
+);
 
-const styleH3 = TextStyle(
-  fontFamily: 'HelveticaNeue',            // Falta importarla en pubspec
-  fontFamilyFallback: ['BrowalliaNew'],
+const h3 = TextStyle(
+  fontSize: 38,
+  fontFamily: 'Browallia',
   fontWeight: FontWeight.w700,
-  fontSize: 36.0,
-  color: primario);
+  color: appColors.primary,
+);
 
-const styleH4 = TextStyle(
-  fontFamily: 'HelveticaNeue',            // Falta importarla en pubspec
-  fontFamilyFallback: ['BrowalliaNew'],
-  fontWeight: FontWeight.w700,
-  fontSize: 25.5,
-  color: primario);
+const subtitle = TextStyle(
+  fontSize: 28,
+  fontFamily: 'Helvetica',
+  color: appColors.primary,
+  height: 1.2,
+);
 
-const styleH5 = TextStyle(
-  fontFamily: 'HelveticaNeue',            // Falta importarla en pubspec
-  fontFamilyFallback: ['BrowalliaNew'],
-  fontWeight: FontWeight.w700,
-  fontSize: 18.0,
-  color: primario);
+const body1 = TextStyle(
+  fontSize: 20,
+  fontFamily: 'Helvetica',
+  color: appColors.primary,
+  height: 1.4,
+);
 
-const styleBodyText = TextStyle(
-  fontFamily: 'HelveticaNeue',            // Falta importarla en pubspec
-  fontFamilyFallback: ['BrowalliaNew'],
-  fontWeight: FontWeight.w500,
-  fontSize: 12.0,
-  color: primario);
-
-const styleBodyTextSmall = TextStyle(
-  fontFamily: 'HelveticaNeue',            // Falta importarla en pubspec
-  fontFamilyFallback: ['BrowalliaNew'],
-  fontWeight: FontWeight.w500,
-  fontSize: 10.0,
-  color: primario);
+const body2 = TextStyle(
+  fontSize: 16,
+  fontFamily: 'Helvetica',
+  color: appColors.primary,
+  height: 1.3,
+);
