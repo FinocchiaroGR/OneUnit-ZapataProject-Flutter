@@ -16,7 +16,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       color: Colors.white,
       home: Scaffold(
-        appBar: const AppAppBar(title: "Bienvenidos"),
+        appBar: const AppAppBar(title: "BMW"),
         body: SafeArea(
             child: Column(
           children: <Widget>[
