@@ -1,4 +1,0 @@
-#Tue Oct 11 10:27:53 CDT 2022
-base.0=C\:\\Users\\maner\\OneDrive\\Escritorio\\Work\\School\\ZapataMobile\\mobile-app\\app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
