@@ -14,10 +14,12 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: Image.asset(app_images.logo),
+      centerTitle: false,
+      elevation: 0,
+      flexibleSpace: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
       ),
+      title: Image.asset(app_images.logo),
       actions: <Widget>[
         AppTypography(
           text: title,
@@ -31,5 +33,5 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => const Size.fromHeight(50);
 }
