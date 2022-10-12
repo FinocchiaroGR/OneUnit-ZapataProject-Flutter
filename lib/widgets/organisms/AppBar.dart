@@ -18,12 +18,12 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       toolbarHeight: 80,
       title: Padding(
-        padding: const EdgeInsets.only(left: 24),
+        padding: const EdgeInsets.only(left: 8),
         child: Image.asset(app_images.logo),
       ),
       actions: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(right: 24, top: 24),
+          padding: const EdgeInsets.only(right: 24, top: 22),
           child: AppTypography(
             text: title,
             type: "subtitle",
