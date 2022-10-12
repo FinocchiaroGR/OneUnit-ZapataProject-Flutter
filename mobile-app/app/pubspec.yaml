@@ -61,9 +61,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -79,25 +78,25 @@ flutter:
   fonts:
     - family: Helvetica
       fonts:
-        - asset: fonts/Helvetica/Bold/HelveticaNeueCyr-Bold.ttf
+        - asset: assets/fonts/Helvetica/Bold/HelveticaNeueCyr-Bold.ttf
           weight: 700
-        - asset: fonts/Helvetica/BoldItalic/HelveticaNeueCyr-BoldItalic.ttf
+        - asset: assets/fonts/Helvetica/BoldItalic/HelveticaNeueCyr-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: fonts/Helvetica/Italic/HelveticaNeueCyr-Italic.ttf
+        - asset: assets/fonts/Helvetica/Italic/HelveticaNeueCyr-Italic.ttf
           style: italic
-        - asset: fonts/Helvetica/Light/HelveticaNeueCyr-Light.ttf
+        - asset: assets/fonts/Helvetica/Light/HelveticaNeueCyr-Light.ttf
           weight: 300
-        - asset: fonts/Helvetica/Medium/HelveticaNeueCyr-Medium.ttf
+        - asset: assets/fonts/Helvetica/Medium/HelveticaNeueCyr-Medium.ttf
           weight: 500
 
     - family: Browallia
       fonts:
-        - asset: fonts/BrowalliaNew/Bold/BrowalliaNew-Bold.ttf
+        - asset: assets/fonts/BrowalliaNew/Bold/BrowalliaNew-Bold.ttf
           weight: 700
-        - asset: fonts/BrowalliaNew/BoldItalic/BrowalliaNew-BoldItalic.ttf
+        - asset: assets/fonts/BrowalliaNew/BoldItalic/BrowalliaNew-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: fonts/BrowalliaNew/Italic/BrowalliaNew-Italic.ttf
+        - asset: assets/fonts/BrowalliaNew/Italic/BrowalliaNew-Italic.ttf
           style: italic
-        - asset: fonts/BrowalliaNew/Regular/BrowalliaNew.ttf
+        - asset: assets/fonts/BrowalliaNew/Regular/BrowalliaNew.ttf

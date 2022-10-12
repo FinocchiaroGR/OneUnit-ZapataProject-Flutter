@@ -4,6 +4,7 @@ import 'package:app/widgets/molecules/IconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import "./widgets/atoms/Typography.dart";
+import 'package:app/widgets/organisms/AppBar.dart';
 import './widgets/organisms/BottomNavigation.dart';
 import "./styles/colors.dart" as app_colors;
 import "./styles/icons.dart" as app_icons;
@@ -15,6 +16,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       color: Colors.white,
       home: Scaffold(
+        appBar: const AppAppBar(title: "Home"),
         body: SafeArea(
             child: Column(
           children: <Widget>[
