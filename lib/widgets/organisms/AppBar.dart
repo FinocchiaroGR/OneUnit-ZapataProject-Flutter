@@ -16,16 +16,19 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: false,
       elevation: 0,
-      flexibleSpace: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+      title: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Image.asset(app_images.logo),
       ),
-      title: Image.asset(app_images.logo),
       actions: <Widget>[
-        AppTypography(
-          text: title,
-          type: "subtitle",
-          align: TextAlign.right,
-        )
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: AppTypography(
+            text: title,
+            type: "subtitle",
+            align: TextAlign.right,
+          ),
+        ),
       ],
       backgroundColor: app_colors.background,
       foregroundColor: app_colors.primary,
