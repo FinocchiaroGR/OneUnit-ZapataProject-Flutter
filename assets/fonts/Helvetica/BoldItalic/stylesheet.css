@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'HelveticaNeueCyr';
+    src: url('HelveticaNeueCyr-BoldItalic.eot');
+    src: url('HelveticaNeueCyr-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('HelveticaNeueCyr-BoldItalic.woff2') format('woff2'),
+        url('HelveticaNeueCyr-BoldItalic.woff') format('woff'),
+        url('HelveticaNeueCyr-BoldItalic.ttf') format('truetype'),
+        url('HelveticaNeueCyr-BoldItalic.svg#HelveticaNeueCyr-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
