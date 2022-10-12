@@ -25,7 +25,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.only(right: 24, top: 22),
           child: AppTypography(
-            text: title,
+            text: title.substring(0, 12),
             type: "subtitle",
             align: TextAlign.right,
           ),
