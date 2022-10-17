@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:app/styles/colors.dart' as app_colors;
+import 'package:app/styles/inputs.dart' as app_inputs;
 
 class AppTextField extends StatefulWidget {
-  const AppTextField({super.key});
+  final String type;
+
+  const AppTextField({
+    super.key,
+    this.type = "normal",
+  });
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }
 
 class _AppTextFieldState extends State<AppTextField> {
+  static final _stylesMap = {
+    "normal": app_inputs.primary,
+    "background": app_inputs.background,
+  };
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        decoration: InputDecoration(
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5.0),
-        borderSide: const BorderSide(
-          color: Color(0xFF404041),
-          width: 1,
-        ),
-      ),
-      focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: app_colors.primary, width: 1)),
-      hintText: '',
-    ));
+      decoration: _stylesMap[widget.type],
+    );
   }
 }

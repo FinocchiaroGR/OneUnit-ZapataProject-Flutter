@@ -42,7 +42,6 @@ class ComponentsShowcase extends StatelessWidget {
           child: Column(
             children: <Widget>[
               const SizedBox(
-                width: 240,
                 child: AppTextField(),
               ),
               const AppCarousel(items: dummyCarSlides),
