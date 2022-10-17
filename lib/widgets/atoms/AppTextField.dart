@@ -12,9 +12,8 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
         decoration: InputDecoration(
-      hintText: 'Correo',
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18), borderSide: BorderSide.none),
+      border: OutlineInputBorder(),
+      hintText: 'Enter Text',
     ));
   }
 }

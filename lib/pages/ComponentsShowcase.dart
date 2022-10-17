@@ -41,6 +41,7 @@ class ComponentsShowcase extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: <Widget>[
+              const AppTextField(),
               const AppCarousel(items: dummyCarSlides),
               const AppTypography(
                 align: TextAlign.left,
@@ -84,7 +85,6 @@ class ComponentsShowcase extends StatelessWidget {
                 icon: app_icons.sellCar,
                 onPressed: () => {},
               ),
-              const AppTextField(),
             ],
           ),
         ),
