@@ -41,7 +41,10 @@ class ComponentsShowcase extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: <Widget>[
-              const AppTextField(),
+              const SizedBox(
+                width: 240,
+                child: AppTextField(),
+              ),
               const AppCarousel(items: dummyCarSlides),
               const AppTypography(
                 align: TextAlign.left,
