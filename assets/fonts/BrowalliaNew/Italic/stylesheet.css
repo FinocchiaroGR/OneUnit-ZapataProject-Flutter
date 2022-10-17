@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Browallia New';
+    src: url('BrowalliaNew-Italic.eot');
+    src: url('BrowalliaNew-Italic.eot?#iefix') format('embedded-opentype'),
+        url('BrowalliaNew-Italic.woff2') format('woff2'),
+        url('BrowalliaNew-Italic.woff') format('woff'),
+        url('BrowalliaNew-Italic.ttf') format('truetype'),
+        url('BrowalliaNew-Italic.svg#BrowalliaNew-Italic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
