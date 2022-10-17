@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
+// Organisms
 import 'package:app/widgets/organisms/AppBar.dart';
 import 'package:app/widgets/organisms/BottomNavigation.dart';
 import 'package:app/widgets/organisms/Carousel.dart';
+
+// Molecules
 import 'package:app/widgets/molecules/IconButton.dart';
+
+// Atoms
 import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/widgets/atoms/Typography.dart';
+import 'package:app/widgets/atoms/RoundButton.dart';
 
 import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/styles/icons.dart' as app_icons;
@@ -81,6 +87,10 @@ class ComponentsShowcase extends StatelessWidget {
               AppIconButton(
                 text: "Some text",
                 icon: app_icons.sellCar,
+                onPressed: () => {},
+              ),
+              AppRoundButton(
+                text: "Editar",
                 onPressed: () => {},
               ),
             ],
