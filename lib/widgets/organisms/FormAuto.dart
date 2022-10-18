@@ -1,4 +1,5 @@
 // ignore: file_names
+import 'package:app/styles/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widgets/organisms/BottomNavigation.dart';
 import 'package:app/widgets/atoms/Typography.dart';
@@ -61,7 +62,7 @@ _carDesc() {
       ),
       AppTypography(
         align: TextAlign.left,
-        type: "body2",
+        type: "body1",
         text:
             "Consequat aute cupidatat aliquip do quis. Nisi aute sit culpa culpa ut. Culpa laboris exercitation sit cupidatat sit veniam deserunt culpa ut Lorem esse minim. In minim eu ea velit mollit nulla et Lorem eu officia culpa eiusmod excepteur voluptate. Ea pariatur ut excepteur consequat minim sint.",
         color: app_colors.primary,
