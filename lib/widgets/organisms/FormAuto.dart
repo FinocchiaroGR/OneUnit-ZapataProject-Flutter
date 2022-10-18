@@ -1,15 +1,9 @@
-// ignore_for_file: avoid_print
-
+// ignore: file_names
 import 'package:flutter/material.dart';
-
-import 'package:app/widgets/organisms/AppBar.dart';
 import 'package:app/widgets/organisms/BottomNavigation.dart';
-
-import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/widgets/atoms/Typography.dart';
-
+import 'package:app/widgets/molecules/Vigencias.dart';
 import 'package:app/styles/colors.dart' as app_colors;
-import 'package:app/consts/images.dart' as app_images;
 
 class FormAuto extends StatelessWidget {
   const FormAuto({super.key});
@@ -22,21 +16,22 @@ class FormAuto extends StatelessWidget {
             child: Container(
                 margin: const EdgeInsets.all(24),
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _car(context),
+                    _car(),
                     const AppTypography(
                       align: TextAlign.center,
                       type: "h2",
                       text: "BMW M4 2021",
                       color: app_colors.primary,
                     ),
-                    // const Divider(
-                    //   color: Color(0xFFFFFF),
-                    //   height: 8,
-                    // ),
-                    _carDesc(context),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    _carDesc(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const Vigencias(),
                   ],
                 ))),
       ),
@@ -44,7 +39,7 @@ class FormAuto extends StatelessWidget {
   }
 }
 
-_car(context) {
+_car() {
   return Column(
     children: [
       Image.asset(
@@ -54,14 +49,14 @@ _car(context) {
   );
 }
 
-_carDesc(context) {
+_carDesc() {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: const [
       AppTypography(
         align: TextAlign.left,
         type: "h3",
-        text: "Descripcion",
+        text: "Descripción",
         color: app_colors.primary,
       ),
       AppTypography(
