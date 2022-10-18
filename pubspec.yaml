@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.0
   carousel_slider: ^4.1.1
+  animated_toggle_switch: ^0.5.2
 
 dev_dependencies:
   flutter_test:
