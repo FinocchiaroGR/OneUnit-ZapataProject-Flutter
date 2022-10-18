@@ -22,12 +22,12 @@ class FormAuto extends StatelessWidget {
             child: Container(
                 margin: const EdgeInsets.all(24),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _car(context),
                     const AppTypography(
-                      align: TextAlign.left,
+                      align: TextAlign.center,
                       type: "h2",
                       text: "BMW M4 2021",
                       color: app_colors.primary,
@@ -56,6 +56,7 @@ _car(context) {
 
 _carDesc(context) {
   return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: const [
       AppTypography(
         align: TextAlign.left,
