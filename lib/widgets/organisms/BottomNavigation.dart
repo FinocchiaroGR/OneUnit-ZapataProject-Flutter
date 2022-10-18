@@ -31,7 +31,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(app_icons.user),
-          label: "Usario",
+          label: "Usuario",
           backgroundColor: app_colors.secondary,
         ),
         BottomNavigationBarItem(
