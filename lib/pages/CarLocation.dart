@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:app/widgets/organisms/Page.dart';
+import 'package:app/widgets/atoms/LocationMap.dart';
 
 import 'package:app/styles/colors.dart' as app_colors;
 
@@ -19,7 +20,9 @@ class CarLocation extends StatelessWidget {
             Expanded(
               flex: 9,
               child: Stack(
-                children: [],
+                children: [
+                  AppLocationMap(latitude: 204, longitude: -101),
+                ],
               ),
             ),
             Expanded(
