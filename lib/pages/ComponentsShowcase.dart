@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:app/widgets/organisms/Page.dart';
 import 'package:app/widgets/organisms/Carousel.dart';
-
 import 'package:app/widgets/molecules/IconButton.dart';
 import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/widgets/atoms/Typography.dart';
