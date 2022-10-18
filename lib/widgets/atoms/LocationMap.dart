@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'package:app/styles/colors.dart' as app_colors;
+
 class AppLocationMap extends StatefulWidget {
   final double zoom;
   final double circleRadius;
@@ -10,8 +12,8 @@ class AppLocationMap extends StatefulWidget {
 
   const AppLocationMap({
     super.key,
-    this.zoom = 15.0,
-    this.circleRadius = 2,
+    this.zoom = 16.0,
+    this.circleRadius = 100,
     required this.latitude,
     required this.longitude,
   });
@@ -38,11 +40,20 @@ class _AppLocationMapState extends State<AppLocationMap> {
       compassEnabled: true,
       myLocationEnabled: true,
       myLocationButtonEnabled: true,
-      minMaxZoomPreference: const MinMaxZoomPreference(12, 16),
+      minMaxZoomPreference: const MinMaxZoomPreference(14, 18),
       initialCameraPosition: CameraPosition(
         target: center,
         zoom: widget.zoom,
       ),
+      circles: {
+        Circle(
+          circleId: const CircleId("wall"),
+          center: center,
+          radius: widget.circleRadius,
+          fillColor: app_colors.shadow,
+          strokeWidth: 1,
+        ),
+      },
     );
   }
 }

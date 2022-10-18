@@ -12,7 +12,7 @@ class AppRoundInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
