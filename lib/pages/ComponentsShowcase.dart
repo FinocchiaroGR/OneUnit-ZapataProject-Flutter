@@ -8,8 +8,6 @@ import 'package:app/widgets/molecules/IconButton.dart';
 import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/widgets/atoms/Typography.dart';
 
-import 'package:app/pages/UserInfoForm.dart';
-
 import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/styles/icons.dart' as app_icons;
 import 'package:app/consts/images.dart' as app_images;
@@ -86,7 +84,6 @@ class ComponentsShowcase extends StatelessWidget {
                 icon: app_icons.sellCar,
                 onPressed: () => {},
               ),
-              const UserInfoForm(),
             ],
           ),
         ),
