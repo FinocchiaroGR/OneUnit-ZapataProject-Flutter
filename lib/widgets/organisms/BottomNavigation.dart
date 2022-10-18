@@ -4,24 +4,24 @@ import "package:app/styles/icons.dart" as app_icons;
 import "package:app/styles/colors.dart" as app_colors;
 
 class AppBottomNavigation extends StatefulWidget {
-  const AppBottomNavigation({super.key});
+  final int selectedIndex;
+  const AppBottomNavigation({
+    super.key,
+    required this.selectedIndex,
+  });
 
   @override
   State<StatefulWidget> createState() => _AppBottomNavigationState();
 }
 
 class _AppBottomNavigationState extends State<AppBottomNavigation> {
-  int _selectedIndex = 0;
-  static const Map<int, String?> _pagesMap = {
+  static const Map<int, String> _pagesMap = {
     0: app_urls.userInfo,
     1: app_urls.home,
     2: app_urls.componentsShowcase,
   };
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
     Navigator.pushNamed(context, _pagesMap[index] ?? app_urls.home);
   }
 
@@ -45,7 +45,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
           backgroundColor: app_colors.secondary,
         ),
       ],
-      currentIndex: _selectedIndex,
+      currentIndex: widget.selectedIndex,
       onTap: _onItemTapped,
       backgroundColor: app_colors.background,
       iconSize: 40,
