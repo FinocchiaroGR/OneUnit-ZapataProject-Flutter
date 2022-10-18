@@ -8,10 +8,18 @@ class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
   @override
   Widget build(BuildContext context) {
-    return AppButton(
-      text: "go to showcase",
-      onPressed: () =>
-          Navigator.pushNamed(context, app_urls.componentsShowcase),
+    return Column(
+      children: [
+        AppButton(
+          text: "go to showcase",
+          onPressed: () =>
+              Navigator.pushNamed(context, app_urls.componentsShowcase),
+        ),
+        AppButton(
+          text: "go to car location",
+          onPressed: () => Navigator.pushNamed(context, app_urls.carLocation),
+        ),
+      ],
     );
   }
 }

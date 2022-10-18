@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/styles/textStyles.dart' as app_styles;
 import 'package:app/styles/colors.dart' as app_colors;
-import 'package:flutter/rendering.dart';
 
 class AppRoundInfo extends StatelessWidget {
   final String text;
