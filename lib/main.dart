@@ -1,6 +1,7 @@
 import 'package:app/providers/PageProvider.dart';
 import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/widgets/molecules/IconButton.dart';
+import 'package:app/widgets/molecules/SliderInput.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import "./widgets/atoms/Typography.dart";
