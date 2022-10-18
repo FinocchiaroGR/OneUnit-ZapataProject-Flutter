@@ -6,12 +6,14 @@ import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/molecules/Vigencias.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 
+import 'Page.dart';
+
 class FormAuto extends StatelessWidget {
   const FormAuto({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: const AppBottomNavigation(),
+    return AppPage(
+      title: "Info Auto",
       body: SingleChildScrollView(
         child: SafeArea(
             child: Container(
