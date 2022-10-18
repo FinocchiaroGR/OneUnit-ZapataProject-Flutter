@@ -8,7 +8,6 @@ import 'package:app/widgets/molecules/IconButton.dart';
 // Atoms
 import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/widgets/atoms/Typography.dart';
-import 'package:app/widgets/atoms/RoundButton.dart';
 
 import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/styles/icons.dart' as app_icons;
