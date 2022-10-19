@@ -25,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
         child: SafeArea(
           // Container 2
           child: Container(
-            
             margin: const EdgeInsets.all(24),
             // Columna
             child: Expanded(
@@ -45,33 +44,12 @@ class _LoginPageState extends State<LoginPage> {
                     height: 33,
                   ),
 
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _inputForm(),
-                      ),
-                    ],
-                  ),
+                  _inputForm(),
                   const SizedBox(
                     height: 15,
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: AppButton(
-                            text: "Iniciar Sesión", onPressed: () => {}),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          _noTienesCuenta(),
-                        ],
-                      ),
-                    ],
-                  ),
+                  AppButton(text: "Iniciar Sesión", onPressed: () => {}),
+                  _noTienesCuenta(),
 
                   //_forgetPassword(),
                 ],
@@ -130,22 +108,9 @@ _inputForm() {
   );
 }
 
-/*_forgetPassword() {
-  return Column(
-    children: const [
-      AppTypography(
-        align: TextAlign.left,
-        type: "body2",
-        text: "¿Olvidaste tu contraseña?",
-        color: app_colors.primary,
-      ),
-    ],
-  );
-}*/
-
 _noTienesCuenta() {
-  return Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: const [
       AppTypography(
         align: TextAlign.center,
