@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '/widgets/atoms/Typography.dart';
-import '/widgets/organisms/Page.dart';
+import 'package:app/widgets/organisms/AppBar.dart';
+import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() => _LoginPageState();
@@ -14,8 +17,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<StatefulWidget> {
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      title: "Info Auto",
+    return Scaffold(
+      appBar: const AppAppBar(title: "hola"),
       body: SingleChildScrollView(
         // SafeArea
         child: SafeArea(
@@ -40,8 +43,12 @@ class _LoginPageState extends State<StatefulWidget> {
                 height: 33,
               ),
               _inputForm(),
-              // Boton - Iniciar sersion
-              //AppButton(text: "Iniciar sesióm", onPressed: ()=>{}),
+              const SizedBox(
+                height: 15,
+              ),
+              AppButton(text: "Iniciar Sesión", onPressed: () => {}),
+              _forgetPassword(),
+              _noTienesCuenta(),
             ],
           )),
         )),
@@ -67,7 +74,6 @@ _inputForm() {
         obscureText: true,
         decoration: InputDecoration(
           border: OutlineInputBorder(),
-          labelText: 'Correo',
         ),
       ),
       SizedBox(
@@ -88,11 +94,36 @@ _inputForm() {
         obscureText: true,
         decoration: InputDecoration(
           border: OutlineInputBorder(),
-          labelText: 'Contraseña',
         ),
       ),
       SizedBox(
         height: 32,
+      ),
+    ],
+  );
+}
+
+_forgetPassword() {
+  return Column(
+    children: const [
+      AppTypography(
+        align: TextAlign.left,
+        type: "body2",
+        text: "¿Olvidaste tu contraseña?",
+        color: app_colors.primary,
+      ),
+    ],
+  );
+}
+
+_noTienesCuenta() {
+  return Column(
+    children: const [
+      AppTypography(
+        align: TextAlign.,
+        type: "body2",
+        text: "¿No tienes cuentas?",
+        color: app_colors.primary,
       ),
     ],
   );

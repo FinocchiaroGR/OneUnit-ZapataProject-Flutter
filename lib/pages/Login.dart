@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/widgets/organisms/LoginPage.dart';
+import 'package:app/pages/LoginPage.dart';
 import 'package:app/widgets/atoms/Button.dart';
 
 class Login extends StatelessWidget {
