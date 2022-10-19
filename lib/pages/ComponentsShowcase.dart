@@ -7,7 +7,7 @@ import 'package:app/widgets/organisms/Modal.dart';
 import 'package:app/widgets/molecules/IconButton.dart';
 import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/widgets/atoms/Typography.dart';
-
+import 'package:app/pages/AutoInfoForm.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/styles/icons.dart' as app_icons;
 import 'package:app/consts/images.dart' as app_images;
@@ -83,6 +83,7 @@ class ComponentsShowcase extends StatelessWidget {
             valueInitG: 35,
             valueInitV: 85,
           ),
+          const AutoInfoForm(),
         ],
       ),
     );

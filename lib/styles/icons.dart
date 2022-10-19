@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 const arrowLeft = Icons.arrow_back_ios_new_sharp;
 const arrowRight = Icons.arrow_forward_ios_sharp;
+const arrowUp = Icons.expand_less_sharp;
+const arrowDown = Icons.expand_more_sharp;
 const documents = Icons.assignment_sharp;
 const contact = Icons.whatsapp_sharp;
 const service = Icons.construction_sharp;
