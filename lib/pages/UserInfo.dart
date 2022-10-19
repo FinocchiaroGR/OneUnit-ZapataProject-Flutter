@@ -8,7 +8,21 @@ import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 
 class UserInfo extends StatelessWidget {
-  const UserInfo({super.key});
+  final String nombre;
+  final String correo;
+  final String dir;
+  final String birth;
+  final String lic;
+
+  const UserInfo({
+    super.key,
+    required this.nombre,
+    required this.correo,
+    required this.dir,
+    required this.birth,
+    required this.lic,
+  });
+
   @override
   Widget build(BuildContext context) {
     return AppPage(
@@ -24,10 +38,10 @@ class UserInfo extends StatelessWidget {
             color: app_colors.primary,
           ),
           const SizedBox(height: 8),
-          const AppTypography(
+          AppTypography(
             align: TextAlign.left,
             type: "subtitle",
-            text: "Juan Pablo Aldasoro",
+            text: nombre,
             color: app_colors.primary,
           ),
           const SizedBox(height: 32),
@@ -38,10 +52,10 @@ class UserInfo extends StatelessWidget {
             color: app_colors.primary,
           ),
           const SizedBox(height: 8),
-          const AppTypography(
+          AppTypography(
             align: TextAlign.left,
             type: "subtitle",
-            text: "juan.pablo@hotmail.com",
+            text: correo,
             color: app_colors.primary,
           ),
           const SizedBox(height: 32),
@@ -52,11 +66,10 @@ class UserInfo extends StatelessWidget {
             color: app_colors.primary,
           ),
           const SizedBox(height: 8),
-          const AppTypography(
+          AppTypography(
             align: TextAlign.left,
             type: "subtitle",
-            text:
-                "Blvd. Quitana 588, San Peditro Peñuelas I, 76148, Santiago de Querétaro, Qro.",
+            text: dir,
             color: app_colors.primary,
           ),
           const SizedBox(height: 32),
@@ -67,10 +80,10 @@ class UserInfo extends StatelessWidget {
             color: app_colors.primary,
           ),
           const SizedBox(height: 8),
-          const AppTypography(
+          AppTypography(
             align: TextAlign.left,
             type: "subtitle",
-            text: "24/08/1995",
+            text: birth,
             color: app_colors.primary,
           ),
           const SizedBox(height: 32),
@@ -81,10 +94,10 @@ class UserInfo extends StatelessWidget {
             color: app_colors.primary,
           ),
           const SizedBox(height: 8),
-          const AppTypography(
+          AppTypography(
             align: TextAlign.left,
             type: "subtitle",
-            text: "24/08/1995",
+            text: lic,
             color: app_colors.primary,
           ),
           const SizedBox(height: 24),
