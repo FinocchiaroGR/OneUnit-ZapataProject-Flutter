@@ -120,7 +120,7 @@ _noTienesCuenta() {
   return Column(
     children: const [
       AppTypography(
-        align: TextAlign.,
+        align: TextAlign.center,
         type: "body2",
         text: "¿No tienes cuentas?",
         color: app_colors.primary,
