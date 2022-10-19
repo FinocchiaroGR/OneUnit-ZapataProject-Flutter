@@ -19,6 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return AppPage(
+      hasAppBar: true,
+      hasBottomNavigation: false,
       title: "Bienvenido",
       body: SingleChildScrollView(
         // SafeArea
