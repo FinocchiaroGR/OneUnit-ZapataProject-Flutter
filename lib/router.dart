@@ -4,6 +4,7 @@ import 'package:app/pages/ComponentsShowcase.dart';
 import 'package:app/pages/Dashboard.dart';
 import 'package:app/pages/UserInfo.dart';
 import 'package:app/pages/CarLocation.dart';
+import 'package:app/pages/AutoInfoForm.dart';
 
 final routes = {
   app_urls.home: (ctx) => const Dashboard(),
@@ -16,4 +17,5 @@ final routes = {
         lic: '22/12/2025',
       ),
   app_urls.carLocation: (ctx) => const CarLocation(),
+  app_urls.carInfo: (ctx) => const FormAuto(),
 };

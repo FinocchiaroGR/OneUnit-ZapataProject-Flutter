@@ -84,7 +84,6 @@ class ComponentsShowcase extends StatelessWidget {
             valueInitG: 35,
             valueInitV: 85,
           ),
-          const AutoInfoForm(),
         ],
       ),
     );

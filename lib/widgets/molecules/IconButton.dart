@@ -21,6 +21,7 @@ class AppIconButton extends StatelessWidget {
       onTap: onPressed,
       child: Ink(
         padding: const EdgeInsets.all(12),
+        width: 120,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           color: app_colors.primary,
