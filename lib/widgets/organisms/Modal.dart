@@ -27,7 +27,7 @@ class AppModalSlider extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               const AppTypography(
-                text: "Límites",
+                text: "Modificar límites",
                 color: app_colors.primary,
                 align: TextAlign.center,
                 type: "h1",
@@ -36,7 +36,7 @@ class AppModalSlider extends StatelessWidget {
                 height: 10,
               ),
               AppSliderInput(
-                label: "Editar rango de geocerca",
+                label: "Editar rango de geocerca               ",
                 minText: "20 km",
                 minValue: 20,
                 maxText: "50 km",
@@ -48,7 +48,7 @@ class AppModalSlider extends StatelessWidget {
                 height: 5,
               ),
               AppSliderInput(
-                label: "Editar velocidad máxima",
+                label: "Editar velocidad máxima               ",
                 minText: "10 km",
                 minValue: 10,
                 maxText: "150 km",
