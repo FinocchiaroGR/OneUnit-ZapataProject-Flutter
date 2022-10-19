@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/consts/images.dart' as app_images;
 import 'package:app/styles/colors.dart' as app_colors;
@@ -25,7 +28,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.only(right: 24, top: 22),
           child: AppTypography(
-            text: title.substring(0, 12),
+            text: title.substring(0, min(12, title.length)),
             type: "subtitle",
             align: TextAlign.right,
           ),

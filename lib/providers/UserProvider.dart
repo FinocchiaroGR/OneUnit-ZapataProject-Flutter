@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PageProvider extends ChangeNotifier {
+class UserProvider extends ChangeNotifier {
   int _currentIndex = 0;
 
   void setIndex(index) {
