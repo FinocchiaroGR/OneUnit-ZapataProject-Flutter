@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/organisms/Page.dart';
 import '/widgets/atoms/Typography.dart';
 import 'package:app/widgets/organisms/AppBar.dart';
 import 'package:app/widgets/atoms/Button.dart';
@@ -22,36 +23,62 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         // SafeArea
         child: SafeArea(
-            // Container 2
-            child: Container(
-          // EdgeInserts - An immutable set of offsets in each of the four cardinal directions.
-          margin: const EdgeInsets.all(24),
-          // Columna
-          child: (Column(
-            // Alineacióm
-            crossAxisAlignment: CrossAxisAlignment.center,
-            // Contenido en Pantalla
-            children: [
-              // Header
-              const AppTypography(
-                align: TextAlign.center,
-                type: "h1",
-                text: "Iniciar Sesión",
-                color: app_colors.primary,
+          // Container 2
+          child: Container(
+            
+            margin: const EdgeInsets.all(24),
+            // Columna
+            child: Expanded(
+              child: Column(
+                // Alineacióm
+                crossAxisAlignment: CrossAxisAlignment.center,
+                // Contenido en Pantalla
+                children: [
+                  // Header
+                  const AppTypography(
+                    align: TextAlign.center,
+                    type: "h1",
+                    text: "Iniciar Sesión",
+                    color: app_colors.primary,
+                  ),
+                  const SizedBox(
+                    height: 33,
+                  ),
+
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _inputForm(),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: AppButton(
+                            text: "Iniciar Sesión", onPressed: () => {}),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          _noTienesCuenta(),
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  //_forgetPassword(),
+                ],
               ),
-              const SizedBox(
-                height: 33,
-              ),
-              _inputForm(),
-              const SizedBox(
-                height: 15,
-              ),
-              AppButton(text: "Iniciar Sesión", onPressed: () => {}),
-              _forgetPassword(),
-              _noTienesCuenta(),
-            ],
-          )),
-        )),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -103,7 +130,7 @@ _inputForm() {
   );
 }
 
-_forgetPassword() {
+/*_forgetPassword() {
   return Column(
     children: const [
       AppTypography(
@@ -114,15 +141,16 @@ _forgetPassword() {
       ),
     ],
   );
-}
+}*/
 
 _noTienesCuenta() {
-  return Column(
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: const [
       AppTypography(
-        align: TextAlign.,
+        align: TextAlign.center,
         type: "body2",
-        text: "¿No tienes cuentas?",
+        text: "¿No tienes cuenta?",
         color: app_colors.primary,
       ),
     ],
