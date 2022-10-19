@@ -11,14 +11,14 @@ class LoginPage extends StatefulWidget {
   });
 
   @override
-  State<StatefulWidget> createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<StatefulWidget> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppAppBar(title: "hola"),
+    return AppPage(
+      title: "Bienvenido",
       body: SingleChildScrollView(
         // SafeArea
         child: SafeArea(
