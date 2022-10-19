@@ -11,6 +11,7 @@ const sellCar = Icons.car_rental_sharp;
 const home = Icons.home_sharp;
 const user = Icons.person_sharp;
 const help = Icons.help_sharp;
+const geoFence = Icons.share_location;
 
 /*
 const person = Icon(Icons.person);
