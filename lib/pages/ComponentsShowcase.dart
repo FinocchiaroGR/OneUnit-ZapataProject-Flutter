@@ -79,11 +79,10 @@ class ComponentsShowcase extends StatelessWidget {
             color: app_colors.primary,
           ),
           AppButton(text: "Click here", onPressed: () => {}),
-          AppButton(
-            text: 'Modal',
-            onPressed: () => {},
+          const AppModalSlider(
+            valueInitG: 35,
+            valueInitV: 85,
           ),
-          const AppModalSlider(),
         ],
       ),
     );

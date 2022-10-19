@@ -5,65 +5,55 @@ import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/atoms/Button.dart';
 
 class AppModalSlider extends StatelessWidget {
-  const AppModalSlider({super.key});
+  final double valueInitG;
+  final double valueInitV;
+  const AppModalSlider(
+      {super.key, required this.valueInitG, required this.valueInitV});
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return AppButton(
+      text: 'Modal',
       onPressed: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const AppTypography(
-            text: "Editar límites",
-            color: app_colors.primary,
-            align: TextAlign.center,
-            type: "h1",
-          ),
+          backgroundColor: app_colors.background,
+          actionsPadding:
+              const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           actions: <Widget>[
-            Container(
-              color: app_colors.background,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  const AppSliderInput(
-                    label: "Editar rango de geocerca",
-                    minText: "20 km",
-                    minValue: 20,
-                    maxText: "50 km",
-                    maxValue: 50,
-                    initialValue: 35,
-                    divisionValue: 6,
-                  ),
-                  const AppSliderInput(
-                    label: "Editar velocidad máxima",
-                    minText: "10 km",
-                    minValue: 10,
-                    maxText: "150 km",
-                    maxValue: 150,
-                    initialValue: 80,
-                    divisionValue: 14,
-                  ),
-                  AppButton(
-                      text: "Aceptar", onPressed: () => Navigator.pop(context)),
-                ],
-              ),
-            )
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const AppTypography(
+                  text: "Límites",
+                  color: app_colors.primary,
+                  align: TextAlign.center,
+                  type: "h1",
+                ),
+                AppSliderInput(
+                  label: "Editar rango de geocerca",
+                  minText: "20 km",
+                  minValue: 20,
+                  maxText: "50 km",
+                  maxValue: 50,
+                  initialValue: valueInitG,
+                  divisionValue: 50,
+                ),
+                AppSliderInput(
+                  label: "Editar velocidad máxima",
+                  minText: "10 km",
+                  minValue: 10,
+                  maxText: "150 km",
+                  maxValue: 150,
+                  initialValue: valueInitV,
+                  divisionValue: 150,
+                ),
+                AppButton(
+                    text: "Aceptar", onPressed: () => Navigator.pop(context)),
+              ],
+            ),
           ],
-        ),
-      ),
-      child: Ink(
-        color: app_colors.primary,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(5),
-          ),
-        ),
-        child: const AppTypography(
-          text: "Modal",
-          color: app_colors.secondary,
-          align: TextAlign.center,
-          type: "body1",
         ),
       ),
     );
