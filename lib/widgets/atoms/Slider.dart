@@ -39,7 +39,7 @@ class _MyStatefulWidgetState extends State<AppSlider> {
     return Slider(
       value: _currentSliderValue,
       activeColor: app_color.primary,
-      inactiveColor: app_color.primary,
+      inactiveColor: app_color.shadow,
       min: widget.minValue,
       max: widget.maxValue,
       divisions: widget.divisions,

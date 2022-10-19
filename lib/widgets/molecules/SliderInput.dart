@@ -25,46 +25,48 @@ class AppSliderInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      splashFactory: InkRipple.splashFactory,
-      child: Ink(
-        padding: const EdgeInsets.all(12),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-        ),
-        child: Column(
-          children: [
-            AppTypography(
+    return Expanded(
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: AppTypography(
               text: label,
               color: app_colors.primary,
+              type: "body1",
               align: TextAlign.left,
-              type: "body2",
             ),
-            AppSlider(
+          ),
+          Expanded(
+            child: AppSlider(
               maxValue: maxValue,
               minValue: minValue,
               initialValue: initialValue,
               divisions: divisionValue,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppTypography(
-                  text: minText,
-                  color: app_colors.primary,
-                  align: TextAlign.left,
-                  type: "body2",
+          ),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: AppTypography(
+                    text: minText,
+                    color: app_colors.primary,
+                    type: "body2",
+                    align: TextAlign.left,
+                  ),
                 ),
-                AppTypography(
-                  text: maxText,
-                  color: app_colors.primary,
-                  align: TextAlign.right,
-                  type: "body2",
+                Expanded(
+                  child: AppTypography(
+                    text: maxText,
+                    color: app_colors.primary,
+                    type: "body2",
+                    align: TextAlign.right,
+                  ),
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

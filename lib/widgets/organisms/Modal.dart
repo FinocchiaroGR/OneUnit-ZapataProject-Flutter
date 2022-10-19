@@ -18,42 +18,51 @@ class AppModalSlider extends StatelessWidget {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           backgroundColor: app_colors.background,
-          actionsPadding:
-              const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-          actions: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const AppTypography(
-                  text: "Límites",
-                  color: app_colors.primary,
-                  align: TextAlign.center,
-                  type: "h1",
-                ),
-                AppSliderInput(
-                  label: "Editar rango de geocerca",
-                  minText: "20 km",
-                  minValue: 20,
-                  maxText: "50 km",
-                  maxValue: 50,
-                  initialValue: valueInitG,
-                  divisionValue: 50,
-                ),
-                AppSliderInput(
-                  label: "Editar velocidad máxima",
-                  minText: "10 km",
-                  minValue: 10,
-                  maxText: "150 km",
-                  maxValue: 150,
-                  initialValue: valueInitV,
-                  divisionValue: 150,
-                ),
-                AppButton(
-                    text: "Aceptar", onPressed: () => Navigator.pop(context)),
-              ],
-            ),
-          ],
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.zero)),
+          insetPadding: const EdgeInsets.symmetric(vertical: 200),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 34, horizontal: 34),
+          content: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const AppTypography(
+                text: "Límites",
+                color: app_colors.primary,
+                align: TextAlign.center,
+                type: "h1",
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppSliderInput(
+                label: "Editar rango de geocerca",
+                minText: "20 km",
+                minValue: 20,
+                maxText: "50 km",
+                maxValue: 50,
+                initialValue: valueInitG,
+                divisionValue: 50,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              AppSliderInput(
+                label: "Editar velocidad máxima",
+                minText: "10 km",
+                minValue: 10,
+                maxText: "150 km",
+                maxValue: 150,
+                initialValue: valueInitV,
+                divisionValue: 150,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              AppButton(
+                  text: "Aceptar", onPressed: () => Navigator.pop(context)),
+            ],
+          ),
         ),
       ),
     );
