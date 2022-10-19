@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../widgets/organisms/Page.dart';
 import '/widgets/atoms/Typography.dart';
-import 'package:app/widgets/organisms/AppBar.dart';
 import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 
@@ -21,42 +20,36 @@ class _LoginPageState extends State<LoginPage> {
     return AppPage(
       hasAppBar: true,
       hasBottomNavigation: false,
-      title: "Bienvenido",
-      body: SingleChildScrollView(
-        // SafeArea
-        child: SafeArea(
-          // Container 2
-          child: Container(
-            margin: const EdgeInsets.all(24),
-            // Columna
-            child: Expanded(
-              child: Column(
-                // Alineacióm
-                crossAxisAlignment: CrossAxisAlignment.center,
-                // Contenido en Pantalla
-                children: [
-                  // Header
-                  const AppTypography(
-                    align: TextAlign.center,
-                    type: "h1",
-                    text: "Iniciar Sesión",
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(
-                    height: 33,
-                  ),
-
-                  _inputForm(),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  AppButton(text: "Iniciar Sesión", onPressed: () => {}),
-                  _noTienesCuenta(),
-
-                  //_forgetPassword(),
-                ],
+      title: "Hola",
+      body: Center(
+        child: Container(
+          margin: const EdgeInsets.all(24),
+          // Columna
+          child: Column(
+            // Alineacióm
+            crossAxisAlignment: CrossAxisAlignment.center,
+            // Contenido en Pantalla
+            children: [
+              // Header
+              const AppTypography(
+                align: TextAlign.center,
+                type: "h1",
+                text: "Iniciar Sesión",
+                color: app_colors.primary,
               ),
-            ),
+              const SizedBox(
+                height: 33,
+              ),
+              _inputForm(),
+              const SizedBox(
+                height: 15,
+              ),
+              AppButton(text: "Iniciar Sesión", onPressed: () => {}),
+              const SizedBox(
+                height: 200,
+              ),
+              _noTienesCuenta(),
+            ],
           ),
         ),
       ),
@@ -112,7 +105,6 @@ _inputForm() {
 
 _noTienesCuenta() {
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
     children: const [
       AppTypography(
         align: TextAlign.center,
