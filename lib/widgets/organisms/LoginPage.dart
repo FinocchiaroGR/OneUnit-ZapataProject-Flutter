@@ -15,7 +15,7 @@ class _LoginPageState extends State<StatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return AppPage(
-      title: "Info Auto",
+      title: "Bienvenido",
       body: SingleChildScrollView(
         // SafeArea
         child: SafeArea(
