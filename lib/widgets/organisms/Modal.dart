@@ -3,6 +3,7 @@ import 'package:app/widgets/molecules/SliderInput.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/atoms/Button.dart';
+import 'package:app/widgets/atoms/RoundButton.dart';
 
 class AppModalSlider extends StatelessWidget {
   final double valueInitG;
@@ -12,8 +13,8 @@ class AppModalSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppButton(
-      text: 'Modal',
+    return AppRoundButton(
+      text: "Edit",
       onPressed: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
@@ -36,7 +37,7 @@ class AppModalSlider extends StatelessWidget {
                 height: 10,
               ),
               AppSliderInput(
-                label: "Editar rango de geocerca               ",
+                label: "Editar rango de geocerca         ",
                 minText: "20 km",
                 minValue: 20,
                 maxText: "50 km",
@@ -48,7 +49,7 @@ class AppModalSlider extends StatelessWidget {
                 height: 5,
               ),
               AppSliderInput(
-                label: "Editar velocidad máxima               ",
+                label: "Editar velocidad máxima         ",
                 minText: "10 km",
                 minValue: 10,
                 maxText: "150 km",

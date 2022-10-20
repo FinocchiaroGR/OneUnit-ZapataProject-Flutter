@@ -1,7 +1,4 @@
-// ignore: file_names
-import 'package:app/styles/textStyles.dart';
 import 'package:flutter/material.dart';
-import 'package:app/widgets/organisms/BottomNavigation.dart';
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/molecules/Vigencias.dart';
 import 'package:app/styles/colors.dart' as app_colors;

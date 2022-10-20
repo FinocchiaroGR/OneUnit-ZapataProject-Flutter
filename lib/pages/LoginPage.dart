@@ -1,125 +1,73 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/organisms/Page.dart';
-import '/widgets/atoms/Typography.dart';
-import 'package:app/widgets/organisms/AppBar.dart';
-import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/styles/colors.dart' as app_colors;
+import '/widgets/atoms/Typography.dart';
+import 'package:app/widgets/molecules/inputLogin.dart';
+import '../widgets/organisms/Page.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({
     super.key,
   });
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  @override
   Widget build(BuildContext context) {
     return AppPage(
       hasAppBar: true,
       hasBottomNavigation: false,
-      title: "Bienvenido",
-      body: SingleChildScrollView(
-        // SafeArea
-        child: SafeArea(
-          // Container 2
-          child: Container(
-            margin: const EdgeInsets.all(24),
-            // Columna
-            child: Expanded(
-              child: Column(
-                // Alineacióm
-                crossAxisAlignment: CrossAxisAlignment.center,
-                // Contenido en Pantalla
-                children: [
-                  // Header
-                  const AppTypography(
-                    align: TextAlign.center,
-                    type: "h1",
-                    text: "Iniciar Sesión",
-                    color: app_colors.primary,
+      hasPadding: false,
+      title: "Hola",
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+          child: Column(
+            children: <Widget>[
+              const Flexible(
+                flex: 2,
+                fit: FlexFit.tight,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: AppTypography(
+                      align: TextAlign.center,
+                      type: "h1",
+                      text: "Iniciar sesión",
+                      color: app_colors.primary,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 33,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Flexible(
+                    fit: FlexFit.tight,
+                    flex: 2,
+                    child: AppInputLoginForm(),
                   ),
-
-                  _inputForm(),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  AppButton(text: "Iniciar Sesión", onPressed: () => {}),
-                  _noTienesCuenta(),
-
-                  //_forgetPassword(),
                 ],
               ),
-            ),
+              const Flexible(
+                flex: 1,
+                fit: FlexFit.loose,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: AppTypography(
+                      align: TextAlign.center,
+                      type: "body2",
+                      text: "¿Todavía no tienes cuenta?",
+                      color: app_colors.primary,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
-}
-
-_inputForm() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: const [
-      AppTypography(
-        align: TextAlign.left,
-        type: "body2",
-        text: "Correo",
-        color: app_colors.primary,
-      ),
-      SizedBox(
-        height: 8,
-      ),
-      TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-        ),
-      ),
-      SizedBox(
-        height: 32,
-      ),
-
-      // Password
-      AppTypography(
-        align: TextAlign.left,
-        type: "body2",
-        text: "Contraseña:",
-        color: app_colors.primary,
-      ),
-      SizedBox(
-        height: 8,
-      ),
-      TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-        ),
-      ),
-      SizedBox(
-        height: 32,
-      ),
-    ],
-  );
-}
-
-_noTienesCuenta() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: const [
-      AppTypography(
-        align: TextAlign.center,
-        type: "body2",
-        text: "¿No tienes cuenta?",
-        color: app_colors.primary,
-      ),
-    ],
-  );
 }

@@ -30,16 +30,8 @@ class AppPage extends StatelessWidget {
           ? AppBottomNavigation(selectedIndex: navigationCurrentIndex)
           : null,
       backgroundColor: app_colors.background,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            padding: hasPadding
-                ? const EdgeInsets.symmetric(horizontal: 24, vertical: 12)
-                : null,
-            child: body,
-          ),
-        ),
-      ),
+      resizeToAvoidBottomInset: false,
+      body: body,
     );
   }
 }

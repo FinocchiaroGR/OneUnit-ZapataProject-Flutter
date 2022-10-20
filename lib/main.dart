@@ -12,7 +12,7 @@ void main() {
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.white,
-      initialRoute: app_urls.home,
+      initialRoute: app_urls.login,
       routes: app_router.routes,
     ),
   ));

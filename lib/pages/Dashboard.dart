@@ -64,47 +64,73 @@ class Dashboard extends StatelessWidget {
     return AppPage(
       title: "Bienvenido",
       navigationCurrentIndex: 1,
-      body: Column(
-        children: <Widget>[
-          const AppCarousel(items: dummyCarSlides),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Container(
-              margin: const EdgeInsets.only(top: 10.0),
-              child: AppIconButton(
-                text: "Mis \ndocumentos",
-                icon: app_icons.documents,
-                onPressed: () => Navigator.pushNamed(context, app_urls.carInfo),
-              ),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height - 178,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const AppCarousel(items: dummyCarSlides),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(top: 10.0),
+                            child: AppIconButton(
+                              text: "Mis \ndocumentos",
+                              icon: app_icons.documents,
+                              onPressed: () => Navigator.pushNamed(
+                                  context, app_urls.carInfo),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 10.0),
+                            child: AppIconButton(
+                              text: "Localizar \nautomóvil",
+                              icon: app_icons.geoFence,
+                              onPressed: () => Navigator.pushNamed(
+                                  context, app_urls.carLocation),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            margin:
+                                const EdgeInsets.only(top: 10.0, bottom: 20),
+                            child: AppIconButton(
+                              text: "Agendar \nservicio",
+                              icon: app_icons.service,
+                              onPressed: () => {},
+                            ),
+                          ),
+                          Container(
+                            margin:
+                                const EdgeInsets.only(top: 10.0, bottom: 20),
+                            child: AppIconButton(
+                              text: "Vender \nautomóvil",
+                              icon: app_icons.sellCar,
+                              onPressed: () => {},
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 10.0),
-              child: AppIconButton(
-                text: "Localizar \nmi auto",
-                icon: app_icons.geoFence,
-                onPressed: () =>
-                    Navigator.pushNamed(context, app_urls.carLocation),
-              ),
-            ),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Container(
-              margin: const EdgeInsets.only(top: 10.0, bottom: 20),
-              child: AppIconButton(
-                text: "Agenda un \nservicio",
-                icon: app_icons.service,
-                onPressed: () => {},
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 10.0, bottom: 20),
-              child: AppIconButton(
-                text: "Vende tu \nauto",
-                icon: app_icons.sellCar,
-                onPressed: () => {},
-              ),
-            ),
-          ]),
-        ],
+          ),
+        ),
       ),
     );
   }
