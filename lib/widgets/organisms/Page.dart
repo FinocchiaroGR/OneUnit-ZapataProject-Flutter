@@ -7,6 +7,7 @@ import 'package:app/styles/colors.dart' as app_colors;
 class AppPage extends StatelessWidget {
   final bool hasAppBar;
   final bool hasBottomNavigation;
+  final bool hasPadding;
   final int navigationCurrentIndex;
   final String title;
   final Widget body;
@@ -15,6 +16,7 @@ class AppPage extends StatelessWidget {
     super.key,
     this.hasAppBar = true,
     this.hasBottomNavigation = true,
+    this.hasPadding = true,
     this.navigationCurrentIndex = 1,
     required this.title,
     required this.body,
@@ -31,7 +33,9 @@ class AppPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            padding: hasPadding
+                ? const EdgeInsets.symmetric(horizontal: 24, vertical: 12)
+                : null,
             child: body,
           ),
         ),

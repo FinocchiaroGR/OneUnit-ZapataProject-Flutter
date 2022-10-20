@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 
-class AppIconButton extends StatelessWidget {
+class AppLargeIconButton extends StatelessWidget {
   final IconData icon;
   final String text;
   final VoidCallback? onPressed;
 
-  const AppIconButton({
+  const AppLargeIconButton({
     super.key,
     required this.text,
     required this.icon,
@@ -20,11 +20,10 @@ class AppIconButton extends StatelessWidget {
       splashFactory: InkRipple.splashFactory,
       onTap: onPressed,
       child: Ink(
-        padding: const EdgeInsets.all(12),
-        width: 120,
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(8),
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          color: app_colors.primary,
+          color: app_colors.secondary,
           boxShadow: [
             BoxShadow(
               color: app_colors.shadow,
@@ -37,12 +36,12 @@ class AppIconButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              size: 48,
-              color: app_colors.background,
+              size: 20,
+              color: app_colors.primary,
             ),
             AppTypography(
               text: text,
-              color: app_colors.background,
+              color: app_colors.primary,
               align: TextAlign.center,
               type: "body2",
             )
