@@ -28,81 +28,89 @@ class UserInfo extends StatelessWidget {
     return AppPage(
       title: "Información",
       navigationCurrentIndex: 0,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const AppTypography(
-            align: TextAlign.left,
-            type: "h3",
-            text: "Nombre:",
-            color: app_colors.primary,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const AppTypography(
+                  align: TextAlign.left,
+                  type: "h3",
+                  text: "Nombre:",
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 5),
+                AppTypography(
+                  align: TextAlign.left,
+                  type: "body1",
+                  text: nombre,
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 20),
+                const AppTypography(
+                  align: TextAlign.left,
+                  type: "h3",
+                  text: "Correo:",
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 5),
+                AppTypography(
+                  align: TextAlign.left,
+                  type: "body1",
+                  text: correo,
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 20),
+                const AppTypography(
+                  align: TextAlign.left,
+                  type: "h3",
+                  text: "Dirección:",
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 5),
+                AppTypography(
+                  align: TextAlign.left,
+                  type: "body1",
+                  text: dir,
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 20),
+                const AppTypography(
+                  align: TextAlign.left,
+                  type: "h3",
+                  text: "Fecha de nacimiento:",
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 5),
+                AppTypography(
+                  align: TextAlign.left,
+                  type: "body1",
+                  text: birth,
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 20),
+                const AppTypography(
+                  align: TextAlign.left,
+                  type: "h3",
+                  text: "Expiración LDC:",
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 5),
+                AppTypography(
+                  align: TextAlign.left,
+                  type: "body1",
+                  text: lic,
+                  color: app_colors.primary,
+                ),
+                const SizedBox(height: 15),
+                AppButton(
+                    text: "Editar", type: "secondary", onPressed: () => {}),
+              ],
+            ),
           ),
-          const SizedBox(height: 8),
-          AppTypography(
-            align: TextAlign.left,
-            type: "subtitle",
-            text: nombre,
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 32),
-          const AppTypography(
-            align: TextAlign.left,
-            type: "h3",
-            text: "Correo:",
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 8),
-          AppTypography(
-            align: TextAlign.left,
-            type: "subtitle",
-            text: correo,
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 32),
-          const AppTypography(
-            align: TextAlign.left,
-            type: "h3",
-            text: "Dirección:",
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 8),
-          AppTypography(
-            align: TextAlign.left,
-            type: "subtitle",
-            text: dir,
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 32),
-          const AppTypography(
-            align: TextAlign.left,
-            type: "h3",
-            text: "Fecha de nacimiento:",
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 8),
-          AppTypography(
-            align: TextAlign.left,
-            type: "subtitle",
-            text: birth,
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 32),
-          const AppTypography(
-            align: TextAlign.left,
-            type: "h3",
-            text: "Expiración LDC:",
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 8),
-          AppTypography(
-            align: TextAlign.left,
-            type: "subtitle",
-            text: lic,
-            color: app_colors.primary,
-          ),
-          const SizedBox(height: 24),
-          AppButton(text: "Editar", onPressed: () => {}),
-        ],
+        ),
       ),
     );
   }

@@ -1,7 +1,4 @@
-import 'dart:ui';
 import 'package:flutter/cupertino.dart';
-
-import './colors.dart' as appColors;
 
 const h1 = TextStyle(
   fontSize: 52,

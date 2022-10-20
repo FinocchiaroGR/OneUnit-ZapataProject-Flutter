@@ -1,8 +1,5 @@
-import 'package:app/styles/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widgets/organisms/Page.dart';
-
-import 'package:app/widgets/organisms/BottomNavigation.dart';
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/molecules/Vigencias.dart';
 import 'package:app/styles/colors.dart' as app_colors;
@@ -15,27 +12,29 @@ class FormAuto extends StatelessWidget {
       title: "Info Auto",
       body: SingleChildScrollView(
         child: SafeArea(
-            child: Container(
-                margin: const EdgeInsets.all(24),
-                child: Column(
-                  children: [
-                    _car(),
-                    const AppTypography(
-                      align: TextAlign.center,
-                      type: "h2",
-                      text: "BMW M4 2021",
-                      color: app_colors.primary,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    _carDesc(),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Vigencias(),
-                  ],
-                ))),
+          child: Container(
+            margin: const EdgeInsets.all(24),
+            child: Column(
+              children: [
+                _car(),
+                const AppTypography(
+                  align: TextAlign.center,
+                  type: "h2",
+                  text: "BMW M4 2021",
+                  color: app_colors.primary,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                _carDesc(),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Vigencias(),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

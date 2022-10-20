@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:app/widgets/organisms/AppBar.dart';
 import 'package:app/widgets/organisms/BottomNavigation.dart';
+import 'package:app/styles/colors.dart' as app_colors;
 
 class AppPage extends StatelessWidget {
   final bool hasAppBar;
@@ -28,16 +29,9 @@ class AppPage extends StatelessWidget {
       bottomNavigationBar: hasBottomNavigation
           ? AppBottomNavigation(selectedIndex: navigationCurrentIndex)
           : null,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            padding: hasPadding
-                ? const EdgeInsets.symmetric(horizontal: 24, vertical: 12)
-                : null,
-            child: body,
-          ),
-        ),
-      ),
+      backgroundColor: app_colors.background,
+      resizeToAvoidBottomInset: false,
+      body: body,
     );
   }
 }
