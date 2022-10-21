@@ -1,7 +1,8 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+
 import 'package:app/widgets/atoms/Typography.dart';
+
 import 'package:app/consts/images.dart' as app_images;
 import 'package:app/styles/colors.dart' as app_colors;
 
@@ -19,6 +20,9 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: false,
       elevation: 0,
       toolbarHeight: 80,
+      backgroundColor: app_colors.background,
+      foregroundColor: app_colors.primary,
+      automaticallyImplyLeading: false,
       title: Padding(
         padding: const EdgeInsets.only(left: 8),
         child: Image.asset(app_images.logo, width: 150),
@@ -33,8 +37,6 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
-      backgroundColor: app_colors.background,
-      foregroundColor: app_colors.primary,
     );
   }
 

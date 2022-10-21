@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:app/styles/colors.dart' as app_colors;
-import 'package:app/consts/urls.dart' as app_urls;
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/atoms/Button.dart';
 
-class AppInputLoginForm extends StatelessWidget {
-  const AppInputLoginForm({super.key});
+import 'package:app/styles/colors.dart' as app_colors;
+import 'package:app/consts/urls.dart' as app_urls;
+
+class AppLoginForm extends StatelessWidget {
+  const AppLoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +57,6 @@ class AppInputLoginForm extends StatelessWidget {
             text: "Iniciar Sesión",
             onPressed: () => Navigator.pushNamed(context, app_urls.home),
           ),
-        ),
-        const SizedBox(
-          height: 200,
         ),
       ],
     );
