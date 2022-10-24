@@ -1,4 +1,6 @@
-import 'package:app/NetworkHandler.dart';
+import 'dart:convert';
+import 'dart:developer';
+import 'package:app/api/apiUserInfo.dart';
 import 'package:app/model/UserModel.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +33,8 @@ class UserInfo extends StatefulWidget {
 
 class _UserInfoState extends State<UserInfo> {
   bool circular = true;
-  NetworkHandler networkHandler = NetworkHandler();
+  bool debugMode = true;
+  ApiUserInfo networkHandler = ApiUserInfo();
 
   UserModel userModel = UserModel();
 
@@ -43,10 +46,18 @@ class _UserInfoState extends State<UserInfo> {
 
   void fetchData() async {
     var response = await networkHandler.getUser();
-    setState(() {
-      userModel = UserModel.fromJson(response);
-      circular = false;
-    });
+
+    if (debugMode == true) {
+      setState(() {
+        circular = false;
+        debugPrint("-- Debug Mode - Información de Usuario --");
+      });
+    } else {
+      setState(() {
+        userModel = UserModel.fromJson(response);
+        circular = false;
+      });
+    }
   }
 
   @override
@@ -59,8 +70,13 @@ class _UserInfoState extends State<UserInfo> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             child: circular
-                ? const Center(
-                    child: CircularProgressIndicator(),
+                ? Center(
+                    child: Column(
+                      children: const [
+                        SizedBox(height: 200),
+                        CircularProgressIndicator(),
+                      ],
+                    ),
                   )
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +91,9 @@ class _UserInfoState extends State<UserInfo> {
                       AppTypography(
                         align: TextAlign.left,
                         type: "body1",
-                        text: userModel.nombre.toString(),
+                        text: debugMode
+                            ? "Juan Pablo Aldaroso"
+                            : userModel.nombre.toString(),
                         color: app_colors.primary,
                       ),
                       const SizedBox(height: 20),
@@ -89,7 +107,9 @@ class _UserInfoState extends State<UserInfo> {
                       AppTypography(
                         align: TextAlign.left,
                         type: "body1",
-                        text: userModel.correo.toString(),
+                        text: debugMode
+                            ? "Juan.Pa@Gmail.com"
+                            : userModel.correo.toString(),
                         color: app_colors.primary,
                       ),
                       const SizedBox(height: 20),
@@ -103,7 +123,9 @@ class _UserInfoState extends State<UserInfo> {
                       AppTypography(
                         align: TextAlign.left,
                         type: "body1",
-                        text: userModel.dir.toString(),
+                        text: debugMode
+                            ? "Epigmenio Gonzalez 509, Departamento H1, Santiago de Querétaro, Querétaro 76240"
+                            : userModel.dir.toString(),
                         color: app_colors.primary,
                       ),
                       const SizedBox(height: 20),
@@ -117,7 +139,9 @@ class _UserInfoState extends State<UserInfo> {
                       AppTypography(
                         align: TextAlign.left,
                         type: "body1",
-                        text: userModel.birth.toString(),
+                        text: debugMode
+                            ? "18/07/1995"
+                            : userModel.birth.toString(),
                         color: app_colors.primary,
                       ),
                       const SizedBox(height: 20),
@@ -131,14 +155,26 @@ class _UserInfoState extends State<UserInfo> {
                       AppTypography(
                         align: TextAlign.left,
                         type: "body1",
-                        text: userModel.lic.toString(),
+                        text:
+                            debugMode ? "05/20/2035" : userModel.lic.toString(),
                         color: app_colors.primary,
                       ),
                       const SizedBox(height: 15),
-                      AppButton(
-                          text: "Editar",
-                          type: "secondary",
-                          onPressed: () => {}),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppButton(
+                            text: "Editar",
+                            type: "secondary",
+                            onPressed: () => {},
+                          ),
+                          AppButton(
+                            text: "Cerrar Sesión",
+                            type: "primary",
+                            onPressed: () => {},
+                          ),
+                        ],
+                      )
                     ],
                   ),
           ),

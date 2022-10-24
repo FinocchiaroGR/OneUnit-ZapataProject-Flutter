@@ -1,23 +1,23 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:http/http.dart' as http;
 import 'package:app/consts/urls.dart';
+import 'package:http/http.dart' as http;
 
-class NetworkHandler {
+class ApiUserInfo {
   Future getUser() async {
     try {
       //String token
       var response = await http.get(
         ApiConstants.apiUser,
-        headers: {"Authorization": "token"},
+        // headers: {"Authorization": "token"},
+        headers: {"Content-Type": "application/json"},
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        log(response.body);
-
         return json.decode(response.body);
       }
+
       log(response.body);
       log(response.statusCode.toString());
     } catch (e) {

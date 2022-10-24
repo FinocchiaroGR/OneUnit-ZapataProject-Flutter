@@ -1,4 +1,4 @@
-const baseurl = "http://localhost:5000";
+const baseurl = "http://localhost:1337/";
 const home = "/";
 const login = "/login";
 const userInfo = "/id/user";
@@ -7,5 +7,5 @@ const carLocation = "/location";
 const componentsShowcase = "/components-showcase";
 
 class ApiConstants {
-  static Uri apiUser = Uri.parse("$baseurl/id/user");
+  static Uri apiUser = Uri.parse("$baseurl/api/user");
 }
