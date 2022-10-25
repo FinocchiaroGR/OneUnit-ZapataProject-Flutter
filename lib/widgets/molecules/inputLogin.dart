@@ -78,7 +78,7 @@ class _AppInputLoginFormState extends State<AppInputLoginForm> {
           height: 8,
         ),
         TextFormField(
-          obscureText: false,
+          obscureText: true,
           controller: passwordController,
           decoration: InputDecoration(
             hintText: 'Contraseña',
