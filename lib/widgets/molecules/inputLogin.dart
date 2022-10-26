@@ -29,10 +29,11 @@ class _AppInputLoginFormState extends State<AppInputLoginForm> {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
-        print(data);
+        
         print(data['token']);
         print('Login successfully');
-      } else {
+      } 
+      else {
         print(response.statusCode);
         print('failed');
       }
