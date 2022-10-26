@@ -51,10 +51,24 @@ class AppInputLoginForm extends StatelessWidget {
         const SizedBox(
           height: 32,
         ),
-        Center(
-          child: AppButton(
-            text: "Iniciar Sesión",
-            onPressed: () => Navigator.pushNamed(context, app_urls.home),
+        GestureDetector(
+          onTap: () {
+            login(
+              emailController.text.toString(),
+              passwordController.text.toString(),
+            );
+          },
+          child: Container(
+            height: 50,
+            decoration: const BoxDecoration(color: app_colors.primary),
+            child: Center(
+              child: AppButton(
+                text: "Iniciar Sesión",
+                onPressed: () => Navigator.pushNamed(context, app_urls.home),
+              ),
+            ),
+            //text: "Iniciar Sesión",
+            //onPressed: () => Navigator.pushNamed(context, app_urls.home),
           ),
         ),
         const SizedBox(
