@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:app/styles/inputs.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/styles/colors.dart' as app_colors;
@@ -29,11 +27,10 @@ class _AppInputLoginFormState extends State<AppInputLoginForm> {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
-        
+
         print(data['token']);
         print('Login successfully');
-      } 
-      else {
+      } else {
         print(response.statusCode);
         print('failed');
       }
@@ -81,9 +78,9 @@ class _AppInputLoginFormState extends State<AppInputLoginForm> {
         TextFormField(
           obscureText: true,
           controller: passwordController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: 'Contraseña',
-            border: const OutlineInputBorder(),
+            border: OutlineInputBorder(),
           ),
         ),
         const SizedBox(
@@ -99,8 +96,11 @@ class _AppInputLoginFormState extends State<AppInputLoginForm> {
           child: Container(
             height: 50,
             decoration: const BoxDecoration(color: app_colors.primary),
-            child: const Center(
-              child: Text('Iniciar sesíon'),
+            child: Center(
+              child: AppButton(
+                text: "Iniciar Sesión",
+                onPressed: () => {},
+              ),
             ),
             //text: "Iniciar Sesión",
             //onPressed: () => Navigator.pushNamed(context, app_urls.home),
