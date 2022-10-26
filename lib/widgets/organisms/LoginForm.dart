@@ -1,20 +1,21 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-import 'package:app/styles/colors.dart' as app_colors;
-import 'package:app/consts/urls.dart' as app_urls;
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/atoms/Button.dart';
 import 'package:http/http.dart';
 
-class AppInputLoginForm extends StatefulWidget {
-  const AppInputLoginForm({super.key});
+import 'package:app/styles/colors.dart' as app_colors;
+import 'package:app/consts/urls.dart' as app_urls;
+
+class AppLoginForm extends StatefulWidget {
+  const AppLoginForm({super.key});
 
   @override
-  _AppInputLoginFormState createState() => _AppInputLoginFormState();
+  State<AppLoginForm> createState() => _AppLoginFormState();
 }
 
-class _AppInputLoginFormState extends State<AppInputLoginForm> {
+class _AppLoginFormState extends State<AppLoginForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -105,9 +106,6 @@ class _AppInputLoginFormState extends State<AppInputLoginForm> {
             //text: "Iniciar Sesión",
             //onPressed: () => Navigator.pushNamed(context, app_urls.home),
           ),
-        ),
-        const SizedBox(
-          height: 200,
         ),
       ],
     );

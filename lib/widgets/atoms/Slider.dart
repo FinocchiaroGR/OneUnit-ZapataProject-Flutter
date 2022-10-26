@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:app/styles/colors.dart' as app_color;
 
 class AppSlider extends StatefulWidget {
@@ -25,7 +26,9 @@ class _MyStatefulWidgetState extends State<AppSlider> {
   @override
   void initState() {
     super.initState();
-    _currentSliderValue = widget.initialValue;
+    _currentSliderValue = widget.initialValue < widget.minValue
+        ? widget.minValue
+        : widget.initialValue;
   }
 
   void _onChange(double value) {

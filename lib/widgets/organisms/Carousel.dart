@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:app/widgets/atoms/Typography.dart';
+
 import 'package:app/styles/icons.dart' as app_icons;
 import 'package:app/styles/colors.dart' as app_colors;
 
@@ -38,7 +40,7 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
         widget.items.map((item) => Image.asset(item['src'])).toList();
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:app/consts/urls.dart';
+import 'package:app/consts/api_urls.dart' as api_urls;
 import 'package:http/http.dart' as http;
 
 class ApiUserInfo {
@@ -9,7 +9,7 @@ class ApiUserInfo {
     try {
       //String token
       var response = await http.get(
-        ApiConstants.apiUser,
+        api_urls.user,
         // headers: {"Authorization": "token"},
         headers: {"Content-Type": "application/json"},
       );
@@ -29,7 +29,7 @@ class ApiUserInfo {
     try {
       //String token
       var response = await http.put(
-        ApiConstants.apiModValidity,
+        api_urls.userValidity,
         // headers: {"Authorization": "token"},
         headers: {"Content-Type": "application/json"},
       );
