@@ -40,7 +40,8 @@ dependencies:
   carousel_slider: ^4.1.1
   animated_toggle_switch: ^0.5.2
   google_maps_flutter: ^2.2.1
-  http: ^0.13.4
+  http: ^0.13.5
+  modal_progress_hud_nsn: ^0.1.0-nullsafety-1
 
 dev_dependencies:
   flutter_test:
