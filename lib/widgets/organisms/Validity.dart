@@ -6,7 +6,16 @@ import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 
 class AppValidity extends StatelessWidget {
-  const AppValidity({super.key});
+  final String insurancePolicy;
+  final String circulationCard;
+  final String vehicleVerification;
+
+  const AppValidity({
+    super.key,
+    required this.insurancePolicy,
+    required this.circulationCard,
+    required this.vehicleVerification,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +44,8 @@ class AppValidity extends StatelessWidget {
           const SizedBox(height: 16),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Column(
-              children: const [
-                AppTypography(
+              children: [
+                const AppTypography(
                   align: TextAlign.left,
                   type: "body1",
                   text: "Póliza de\nseguro",
@@ -45,14 +54,14 @@ class AppValidity extends StatelessWidget {
                 AppTypography(
                   align: TextAlign.left,
                   type: "body2",
-                  text: "24/08/1995",
+                  text: insurancePolicy,
                   color: app_colors.background,
                 ),
               ],
             ),
             Column(
-              children: const [
-                AppTypography(
+              children: [
+                const AppTypography(
                   align: TextAlign.left,
                   type: "body1",
                   text: "Tarjeta de\ncirculación",
@@ -61,7 +70,7 @@ class AppValidity extends StatelessWidget {
                 AppTypography(
                   align: TextAlign.left,
                   type: "body2",
-                  text: "240/08/1995",
+                  text: circulationCard,
                   color: app_colors.background,
                 ),
               ],
@@ -70,8 +79,8 @@ class AppValidity extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          Column(children: const [
-            AppTypography(
+          Column(children: [
+            const AppTypography(
               align: TextAlign.left,
               type: "body1",
               text: "Verificación\nvehicular",
@@ -80,7 +89,7 @@ class AppValidity extends StatelessWidget {
             AppTypography(
               align: TextAlign.left,
               type: "body2",
-              text: "240/08/1995",
+              text: vehicleVerification,
               color: app_colors.background,
             ),
           ]),

@@ -11,13 +11,22 @@ import 'package:app/styles/icons.dart' as app_icons;
 import 'package:app/consts/urls.dart' as app_urls;
 
 class CarLocation extends StatelessWidget {
+  final double latitude = 20.61248512229703;
+  final double longitude = -100.40373924688542;
+  final double circleRadius = 150;
+  final double carVelocity = 90;
+  final double geofenceValue = 0;
+  final double velocityValue = 0;
+
   const CarLocation({super.key});
 
   Future<void> _showLimitsModal(BuildContext context) {
     return showDialog<void>(
       context: context,
-      builder: (BuildContext context) =>
-          const AppLimitsModal(geofenceValue: 0, velocityValue: 0),
+      builder: (BuildContext context) => AppLimitsModal(
+        geofenceValue: geofenceValue,
+        velocityValue: velocityValue,
+      ),
     );
   }
 
@@ -40,17 +49,17 @@ class CarLocation extends StatelessWidget {
               flex: 9,
               child: Stack(
                 children: <Widget>[
-                  const AppLocationMap(
-                    latitude: 20.61248512229703,
-                    longitude: -100.40373924688542,
-                    circleRadius: 150,
+                  AppLocationMap(
+                    latitude: latitude,
+                    longitude: longitude,
+                    circleRadius: circleRadius,
                   ),
                   Positioned(
                     top: 24,
                     right: 24,
                     child: Column(
                       children: [
-                        const AppRoundInfo(text: "90\nkm/hr"),
+                        AppRoundInfo(text: "$carVelocity\nkm/hr"),
                         const SizedBox(height: 8),
                         AppRoundButton(
                             text: "Edit",
