@@ -99,7 +99,7 @@ class _AppInputLoginFormState extends State<AppInputLoginForm> {
             child: Center(
               child: AppButton(
                 text: "Iniciar Sesión",
-                onPressed: () => {},
+                onPressed: () => Navigator.pushNamed(context, app_urls.home),
               ),
             ),
             //text: "Iniciar Sesión",
