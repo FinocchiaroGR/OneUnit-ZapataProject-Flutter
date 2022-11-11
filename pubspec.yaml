@@ -83,19 +83,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Helvetica
+    - family: Monteserrat
       fonts:
-        - asset: assets/fonts/Helvetica/Bold/HelveticaNeueCyr-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Helvetica/BoldItalic/HelveticaNeueCyr-BoldItalic.ttf
-          weight: 700
-          style: italic
-        - asset: assets/fonts/Helvetica/Italic/HelveticaNeueCyr-Italic.ttf
-          style: italic
-        - asset: assets/fonts/Helvetica/Light/HelveticaNeueCyr-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Helvetica/Medium/HelveticaNeueCyr-Medium.ttf
-          weight: 500
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-Light.ttf
 
     - family: Browallia
       fonts:

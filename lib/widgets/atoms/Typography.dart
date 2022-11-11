@@ -9,6 +9,7 @@ class AppTypography extends StatelessWidget {
   final Color color;
   final TextAlign align;
   static const _stylesMap = {
+    "hx": app_styles.hx,
     "h1": app_styles.h1,
     "h2": app_styles.h2,
     "h3": app_styles.h3,
