@@ -4,8 +4,6 @@ import 'package:app/widgets/organisms/Page.dart';
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/organisms/LoginForm.dart';
 
-import 'package:app/styles/colors.dart' as app_colors;
-
 class LoginPage extends StatelessWidget {
   const LoginPage({
     super.key,
@@ -15,23 +13,46 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppPage(
       hasBottomNavigation: false,
+      hasColorBackground: true,
       title: "Hola",
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: const <Widget>[
-          AppTypography(
-            align: TextAlign.center,
-            type: "h1",
-            text: "Iniciar sesión",
-            color: app_colors.primary,
+          Flexible(
+            flex: 1,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: AppTypography(
+                type: "hx",
+                text: "Iniciar sesión",
+              ),
+            ),
           ),
-          AppLoginForm(),
-          AppTypography(
-            align: TextAlign.center,
-            type: "body2",
-            text: "¿Todavía no tienes cuenta?",
-            color: app_colors.primary,
+          Expanded(
+            flex: 3,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: AppLoginForm(),
+            ),
           ),
+
+          /* -- Sin Cuenta Banner --
+          Flexible(
+                flex: 1,
+                fit: FlexFit.loose,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: AppTypography(
+                      align: TextAlign.center,
+                      type: "body2",
+                      text: "¿Todavía no tienes cuenta?",
+                      color: app_colors.primary,
+                    ),
+                  ),
+                ),
+              ),
+          */
         ],
       ),
     );

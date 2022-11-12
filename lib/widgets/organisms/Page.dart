@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:app/widgets/organisms/AppBar.dart';
 import 'package:app/widgets/organisms/BottomNavigation.dart';
+import 'package:app/styles/colors.dart' as app_colors;
 
 class AppPage extends StatelessWidget {
   final bool hasAppBar;
   final bool hasBottomNavigation;
+  final bool hasColorBackground;
   final bool hasPadding;
   final int navigationCurrentIndex;
   final String title;
@@ -17,6 +19,7 @@ class AppPage extends StatelessWidget {
     this.hasBottomNavigation = true,
     this.hasPadding = true,
     this.navigationCurrentIndex = 1,
+    this.hasColorBackground = false,
     required this.title,
     required this.body,
   });
@@ -28,6 +31,7 @@ class AppPage extends StatelessWidget {
       bottomNavigationBar: hasBottomNavigation
           ? AppBottomNavigation(selectedIndex: navigationCurrentIndex)
           : null,
+      backgroundColor: hasColorBackground ? app_colors.background : null,
       body: SafeArea(
         child: Container(
           padding: hasPadding
