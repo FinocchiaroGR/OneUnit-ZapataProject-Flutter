@@ -1,3 +1,4 @@
+import 'package:app/api/apiLogin.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/widgets/atoms/Typography.dart';
@@ -6,6 +7,7 @@ import 'package:app/widgets/atoms/Button.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/consts/urls.dart' as app_urls;
 import 'package:app/styles/icons.dart' as app_icons;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class AppLoginForm extends StatefulWidget {
   const AppLoginForm({super.key});
@@ -15,7 +17,12 @@ class AppLoginForm extends StatefulWidget {
 }
 
 class _AppLoginFormState extends State<AppLoginForm> {
+  late String email;
+  late String password;
+  bool loading = false;
+  bool error = false;
   final formKey = GlobalKey<FormState>();
+  ApiLogin networkHandler = ApiLogin();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -33,9 +40,17 @@ class _AppLoginFormState extends State<AppLoginForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 8,
-          ),
+          error
+              ? const SizedBox(
+                  height: 25,
+                  child: AppTypography(
+                    text: "Usuario no registrado",
+                    type: "body2",
+                    color: Colors.red,
+                  ))
+              : const SizedBox(
+                  height: 8,
+                ),
           const AppTypography(
             align: TextAlign.left,
             type: "body1",
@@ -100,15 +115,35 @@ class _AppLoginFormState extends State<AppLoginForm> {
           const SizedBox(
             height: 20,
           ),
-          Center(
-            child: AppButton(
-                text: "Iniciar sesión",
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, app_urls.home);
-                  }
-                }),
-          ),
+          loading
+              ? const SpinKitThreeBounce(
+                  color: app_colors.primary,
+                )
+              : Center(
+                  child: AppButton(
+                    text: "Iniciar sesión",
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        setState(() {
+                          loading = true;
+                        });
+                        var response = await networkHandler.login(
+                            _emailController.text, _passwordController.text);
+                        if (response == 200) {
+                          // ignore: use_build_context_synchronously
+                          Navigator.pushNamed(context, app_urls.home);
+                        } else {
+                          setState(() {
+                            error = true;
+                          });
+                        }
+                      }
+                      setState(() {
+                        loading = false;
+                      });
+                    },
+                  ),
+                ),
         ],
       ),
     );

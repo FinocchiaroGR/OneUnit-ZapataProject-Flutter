@@ -4,8 +4,6 @@ import 'package:app/widgets/organisms/Page.dart';
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/widgets/organisms/LoginForm.dart';
 
-import 'package:app/styles/colors.dart' as app_colors;
-
 class LoginPage extends StatelessWidget {
   const LoginPage({
     super.key,
