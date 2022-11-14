@@ -1,5 +1,6 @@
 import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:app/widgets/organisms/Page.dart';
 import 'package:app/widgets/atoms/Button.dart';
@@ -21,9 +22,10 @@ class UserInfo extends StatefulWidget {
 
 class _UserInfoState extends State<UserInfo> {
   bool loading = true;
+  late String birth;
+  late String lic;
+  late UserModel userModel;
   ApiUserInfo networkHandler = ApiUserInfo();
-
-  UserModel userModel = UserModel();
 
   @override
   void initState() {
@@ -37,6 +39,13 @@ class _UserInfoState extends State<UserInfo> {
     var response = await networkHandler.getUser(id, token);
     setState(() {
       userModel = UserModel.fromJson(response);
+
+      birth = DateFormat("dd/MM/yyyy").format(
+          DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+              .parse(userModel.birthDate.toString()));
+      lic = DateFormat("dd/MM/yyyy").format(
+          DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+              .parse(userModel.licenceValidity.toString()));
       loading = false;
     });
   }
@@ -108,7 +117,7 @@ class _UserInfoState extends State<UserInfo> {
                   AppTypography(
                     align: TextAlign.left,
                     type: "body1",
-                    text: userModel.birthDate.toString(),
+                    text: birth,
                     color: app_colors.primary,
                   ),
                   const SizedBox(height: 20),
@@ -122,7 +131,7 @@ class _UserInfoState extends State<UserInfo> {
                   AppTypography(
                     align: TextAlign.left,
                     type: "body1",
-                    text: userModel.licenceValidity.toString(),
+                    text: lic,
                     color: app_colors.primary,
                   ),
                   const SizedBox(height: 25),
