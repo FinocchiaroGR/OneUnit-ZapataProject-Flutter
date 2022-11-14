@@ -1,3 +1,4 @@
+import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/widgets/organisms/Page.dart';
@@ -8,14 +9,10 @@ import 'package:app/styles/colors.dart' as app_colors;
 
 import 'package:app/api/apiUserInfo.dart';
 import 'package:app/models/UserModel.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 class UserInfo extends StatefulWidget {
-  final String name = 'Juan Pablo Aldasoro';
-  final String email = 'juan.pablo@hotmail.com';
-  final String address = 'Blvd. Quintana 588, San Pedrito';
-  final String birthDate = '24/08/1995';
-  final String licenceValidity = '22/12/2025';
-
   const UserInfo({super.key});
 
   @override
@@ -23,32 +20,25 @@ class UserInfo extends StatefulWidget {
 }
 
 class _UserInfoState extends State<UserInfo> {
-  bool circular = true;
-  bool debugMode = true;
+  bool loading = true;
   ApiUserInfo networkHandler = ApiUserInfo();
 
   UserModel userModel = UserModel();
 
   @override
   void initState() {
+    final id = Provider.of<UserProvider>(context, listen: false).getID();
+    final token = Provider.of<UserProvider>(context, listen: false).getToken();
     super.initState();
-    fetchData();
+    fetchData(id, token);
   }
 
-  void fetchData() async {
-    var response = await networkHandler.getUser();
-
-    if (debugMode == true) {
-      setState(() {
-        circular = false;
-        debugPrint("-- Debug Mode - Información de Usuario --");
-      });
-    } else {
-      setState(() {
-        userModel = UserModel.fromJson(response);
-        circular = false;
-      });
-    }
+  void fetchData(String? id, String? token) async {
+    var response = await networkHandler.getUser(id, token);
+    setState(() {
+      userModel = UserModel.fromJson(response);
+      loading = false;
+    });
   }
 
   @override
@@ -56,17 +46,14 @@ class _UserInfoState extends State<UserInfo> {
     return AppPage(
       title: "Información",
       navigationCurrentIndex: 0,
-      body: SingleChildScrollView(
-        child: circular
-            ? Center(
-                child: Column(
-                  children: const [
-                    SizedBox(height: 200),
-                    CircularProgressIndicator(),
-                  ],
-                ),
-              )
-            : Column(
+      body: loading
+          ? const Center(
+              child: SpinKitThreeBounce(
+                color: app_colors.primary,
+              ),
+            )
+          : SingleChildScrollView(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const AppTypography(
@@ -79,7 +66,7 @@ class _UserInfoState extends State<UserInfo> {
                   AppTypography(
                     align: TextAlign.left,
                     type: "body1",
-                    text: widget.name,
+                    text: userModel.name.toString(),
                     color: app_colors.primary,
                   ),
                   const SizedBox(height: 20),
@@ -93,7 +80,7 @@ class _UserInfoState extends State<UserInfo> {
                   AppTypography(
                     align: TextAlign.left,
                     type: "body1",
-                    text: widget.email,
+                    text: userModel.email.toString(),
                     color: app_colors.primary,
                   ),
                   const SizedBox(height: 20),
@@ -107,7 +94,7 @@ class _UserInfoState extends State<UserInfo> {
                   AppTypography(
                     align: TextAlign.left,
                     type: "body1",
-                    text: widget.address,
+                    text: userModel.address.toString(),
                     color: app_colors.primary,
                   ),
                   const SizedBox(height: 20),
@@ -121,7 +108,7 @@ class _UserInfoState extends State<UserInfo> {
                   AppTypography(
                     align: TextAlign.left,
                     type: "body1",
-                    text: widget.birthDate,
+                    text: userModel.birthDate.toString(),
                     color: app_colors.primary,
                   ),
                   const SizedBox(height: 20),
@@ -135,15 +122,28 @@ class _UserInfoState extends State<UserInfo> {
                   AppTypography(
                     align: TextAlign.left,
                     type: "body1",
-                    text: widget.licenceValidity,
+                    text: userModel.licenceValidity.toString(),
                     color: app_colors.primary,
                   ),
-                  const SizedBox(height: 15),
-                  AppButton(
-                      text: "Editar", type: "secondary", onPressed: () => {}),
+                  const SizedBox(height: 25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AppButton(
+                        text: "Editar",
+                        type: "primary",
+                        onPressed: () => {},
+                      ),
+                      AppButton(
+                        text: "Cerrar sesión",
+                        type: "primary",
+                        onPressed: () => {},
+                      ),
+                    ],
+                  )
                 ],
               ),
-      ),
+            ),
     );
   }
 }

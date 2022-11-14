@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
-  int _currentIndex = 0;
+  String? _id;
+  String? _token;
 
-  void setIndex(index) {
-    _currentIndex = index;
+  void signIn(String id, String token) {
+    _id = id;
+    _token = token;
     notifyListeners();
   }
 
-  int getIndex() => _currentIndex;
+  void deleteAll() {
+    _id = null;
+    _token = null;
+  }
+
+  String? getID() => _id;
+  String? getToken() => _token;
 }

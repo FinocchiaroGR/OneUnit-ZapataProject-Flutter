@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:app/api/apiLogin.dart';
+import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/widgets/atoms/Typography.dart';
@@ -8,6 +11,7 @@ import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/consts/urls.dart' as app_urls;
 import 'package:app/styles/icons.dart' as app_icons;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 class AppLoginForm extends StatefulWidget {
   const AppLoginForm({super.key});
@@ -17,10 +21,9 @@ class AppLoginForm extends StatefulWidget {
 }
 
 class _AppLoginFormState extends State<AppLoginForm> {
-  late String email;
-  late String password;
   bool loading = false;
   bool error = false;
+  bool logedIn = false;
   final formKey = GlobalKey<FormState>();
   ApiLogin networkHandler = ApiLogin();
   final TextEditingController _emailController = TextEditingController();
@@ -32,6 +35,32 @@ class _AppLoginFormState extends State<AppLoginForm> {
     _emailController;
     _passwordController;
   }
+
+  void fetchData(String email, String password) async {
+    setState(() {
+      error = false;
+      loading = true;
+    });
+    var response = await networkHandler.login(email, password);
+    if (response.statusCode.toDouble() == 200) {
+      setUserProvider(response);
+      Navigator.pushNamed(context, app_urls.home);
+      setState(() {
+        loading = false;
+        logedIn = true;
+      });
+    } else {
+      setState(() {
+        error = true;
+        loading = false;
+      });
+    }
+  }
+
+  void setUserProvider(response) =>
+      Provider.of<UserProvider>(context, listen: false).signIn(
+          jsonDecode(response.body)['id'].toString(),
+          jsonDecode(response.body)['token'].toString());
 
   @override
   Widget build(BuildContext context) {
@@ -122,25 +151,14 @@ class _AppLoginFormState extends State<AppLoginForm> {
               : Center(
                   child: AppButton(
                     text: "Iniciar sesión",
-                    onPressed: () async {
-                      if (formKey.currentState!.validate()) {
-                        setState(() {
-                          loading = true;
-                        });
-                        var response = await networkHandler.login(
-                            _emailController.text, _passwordController.text);
-                        if (response == 200) {
-                          // ignore: use_build_context_synchronously
-                          Navigator.pushNamed(context, app_urls.home);
-                        } else {
-                          setState(() {
-                            error = true;
-                          });
-                        }
-                      }
+                    onPressed: () {
                       setState(() {
-                        loading = false;
+                        error = false;
                       });
+                      if (formKey.currentState!.validate()) {
+                        fetchData(
+                            _emailController.text, _passwordController.text);
+                      }
                     },
                   ),
                 ),
