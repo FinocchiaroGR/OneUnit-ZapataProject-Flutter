@@ -12,12 +12,27 @@ class ApiLogin {
       //String token
       var response = await http.post(
         api_urls.login,
-        // headers: {"Authorization": "token"},
         headers: {"Content-Type": "application/json"},
         body:
             jsonEncode(<String, String>{'email': email, 'password': password}),
       );
       return response;
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future logout(String email, String token) async {
+    try {
+      var response = await http.post(
+        api_urls.logout,
+        headers: {
+          "Authorization": 'Bearer $token',
+          "Content-Type": "application/json"
+        },
+        body: jsonEncode(<String, String>{'email': email}),
+      );
+      return response.statusCode.toDouble();
     } catch (e) {
       log(e.toString());
     }

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/api/apiLogin.dart';
+import 'package:app/api/apiAuth.dart';
 import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 
