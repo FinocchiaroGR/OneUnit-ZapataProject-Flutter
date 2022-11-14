@@ -11,17 +11,21 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => UserProvider(),
-      child: MaterialApp(
-        theme: ThemeData(
-          colorScheme: ThemeData().colorScheme.copyWith(
-                primary: app_colors.primary,
-                secondary: app_colors.secondary,
-              ),
-        ),
-        debugShowCheckedModeBanner: false,
-        color: Colors.white,
-        initialRoute: app_urls.login,
-        routes: app_router.routes,
+      child: Consumer<UserProvider>(
+        builder: (context, userprovider, _) {
+          return MaterialApp(
+            theme: ThemeData(
+              colorScheme: ThemeData().colorScheme.copyWith(
+                    primary: app_colors.primary,
+                    secondary: app_colors.secondary,
+                  ),
+            ),
+            debugShowCheckedModeBanner: false,
+            color: Colors.white,
+            initialRoute: app_urls.login,
+            routes: app_router.routes,
+          );
+        },
       ),
     ),
   );
