@@ -42,13 +42,17 @@ class _UserInfoState extends State<UserInfo> {
     var response = await networkHandler.getUser(id!, token!);
     setState(() {
       userModel = UserModel.fromJson(response);
-
+      if (userModel.licenceValidity != null) {
+        lic = DateFormat("dd/MM/yyyy").format(
+            DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                .parse(userModel.licenceValidity.toString()));
+      } else {
+        lic =
+            "Porfavor edite la fecha de expiración de la licencia de conducir";
+      }
       birth = DateFormat("dd/MM/yyyy").format(
           DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
               .parse(userModel.birthDate.toString()));
-      lic = DateFormat("dd/MM/yyyy").format(
-          DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-              .parse(userModel.licenceValidity.toString()));
       loading = false;
     });
   }
@@ -127,7 +131,7 @@ class _UserInfoState extends State<UserInfo> {
                   const AppTypography(
                     align: TextAlign.left,
                     type: "h3",
-                    text: "Expiración LDC:",
+                    text: "Fecha Expiración LDC:",
                     color: app_colors.primary,
                   ),
                   const SizedBox(height: 5),
@@ -155,7 +159,7 @@ class _UserInfoState extends State<UserInfo> {
                                 Provider.of<UserProvider>(context,
                                         listen: false)
                                     .getToken()!);
-                            if (response.statusCode.toDouble() == 200) {
+                            if (response.statusCode == 200) {
                               Navigator.pushNamed(context, app_urls.login);
                             }
                           }),

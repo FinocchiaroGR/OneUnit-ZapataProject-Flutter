@@ -59,7 +59,7 @@ class _AppLoginFormState extends State<AppLoginForm> {
 
   void setUserProvider(response) =>
       Provider.of<UserProvider>(context, listen: false).signIn(
-          jsonDecode(response.body)['id'].toString(),
+          jsonDecode(response.body)['userId'].toString(),
           jsonDecode(response.body)['token'].toString());
 
   @override

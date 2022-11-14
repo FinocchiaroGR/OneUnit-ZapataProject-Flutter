@@ -32,7 +32,7 @@ class ApiLogin {
         },
         body: jsonEncode(<String, String>{'email': email}),
       );
-      return response.statusCode.toDouble();
+      return response;
     } catch (e) {
       log(e.toString());
     }
