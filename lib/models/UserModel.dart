@@ -27,7 +27,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
     email: json["user"]['email'] as String,
     address: json["address"] as String,
     birthDate: json["birthDate"] as String,
-    licenceValidity: json["licenceValidity"] as String,
+    licenceValidity: json["licenceValidity"] as String?,
   );
 }
 

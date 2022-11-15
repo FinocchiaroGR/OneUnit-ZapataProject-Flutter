@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/api/apiLogin.dart';
+import 'package:app/api/apiAuth.dart';
 import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +59,7 @@ class _AppLoginFormState extends State<AppLoginForm> {
 
   void setUserProvider(response) =>
       Provider.of<UserProvider>(context, listen: false).signIn(
-          jsonDecode(response.body)['id'].toString(),
+          jsonDecode(response.body)['userId'].toString(),
           jsonDecode(response.body)['token'].toString());
 
   @override

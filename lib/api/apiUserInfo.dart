@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app/consts/api_urls.dart' as api_urls;
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class ApiUserInfo {
-  Future getUser(String? id, String? token) async {
+  Future getUser(String id, String token) async {
+    debugPrint(id);
     try {
-      String url = api_urls.user.toString() + id!;
+      String url = api_urls.user.toString() + id;
       var response = await http.get(
         Uri.parse(url),
         headers: {
