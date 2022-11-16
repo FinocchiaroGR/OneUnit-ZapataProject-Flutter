@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:app/models/CarModel.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 class UserProvider extends ChangeNotifier {
   late String _id;
@@ -23,7 +22,7 @@ class UserProvider extends ChangeNotifier {
 
   void saveCars(String id, String token, jsonRespond) {
     for (int i = 0; i < jsonDecode(jsonRespond)["body"].length; i++) {
-      _cars!.add(CarModel.fromJson(jsonDecode(jsonRespond)["body"][i]));
+      _cars.add(CarModel.fromJson(jsonDecode(jsonRespond)["body"][i]));
       notifyListeners();
     }
   }
