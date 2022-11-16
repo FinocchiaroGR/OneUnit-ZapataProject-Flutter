@@ -57,117 +57,123 @@ class _UserInfoState extends State<UserInfo> {
     });
   }
 
+  void _goLogin() {
+    // Provider.of<UserProvider>(context, listen: false).deleteAll();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      title: "Información",
-      navigationCurrentIndex: 0,
-      body: loading
-          ? const Center(
-              child: SpinKitThreeBounce(
-                color: app_colors.primary,
-              ),
-            )
-          : SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const AppTypography(
-                    align: TextAlign.left,
-                    type: "h3",
-                    text: "Nombre:",
+    return Consumer<UserProvider>(
+      builder: (context, user, child) {
+        return AppPage(
+          title: "Información",
+          navigationCurrentIndex: 0,
+          body: loading
+              ? const Center(
+                  child: SpinKitThreeBounce(
                     color: app_colors.primary,
                   ),
-                  const SizedBox(height: 5),
-                  AppTypography(
-                    align: TextAlign.left,
-                    type: "body1",
-                    text: userModel.name.toString(),
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 20),
-                  const AppTypography(
-                    align: TextAlign.left,
-                    type: "h3",
-                    text: "Correo:",
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 5),
-                  AppTypography(
-                    align: TextAlign.left,
-                    type: "body1",
-                    text: userModel.email.toString(),
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 20),
-                  const AppTypography(
-                    align: TextAlign.left,
-                    type: "h3",
-                    text: "Dirección:",
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 5),
-                  AppTypography(
-                    align: TextAlign.left,
-                    type: "body1",
-                    text: userModel.address.toString(),
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 20),
-                  const AppTypography(
-                    align: TextAlign.left,
-                    type: "h3",
-                    text: "Fecha de nacimiento:",
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 5),
-                  AppTypography(
-                    align: TextAlign.left,
-                    type: "body1",
-                    text: birth,
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 20),
-                  const AppTypography(
-                    align: TextAlign.left,
-                    type: "h3",
-                    text: "Fecha Expiración LDC:",
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 5),
-                  AppTypography(
-                    align: TextAlign.left,
-                    type: "body1",
-                    text: lic,
-                    color: app_colors.primary,
-                  ),
-                  const SizedBox(height: 25),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppButton(
-                        text: "Editar",
-                        type: "primary",
-                        onPressed: () => {},
+                )
+              : SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const AppTypography(
+                        align: TextAlign.left,
+                        type: "h3",
+                        text: "Nombre:",
+                        color: app_colors.primary,
                       ),
-                      AppButton(
-                          text: "Cerrar sesión",
-                          type: "primary",
-                          onPressed: () async {
-                            var response = await networkHandlerAuth.logout(
-                                userModel.email.toString(),
-                                Provider.of<UserProvider>(context,
-                                        listen: false)
-                                    .getToken()!);
-                            if (response.statusCode == 200) {
-                              Navigator.pushNamed(context, app_urls.login);
-                            }
-                          }),
+                      const SizedBox(height: 5),
+                      AppTypography(
+                        align: TextAlign.left,
+                        type: "body1",
+                        text: userModel.name.toString(),
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 20),
+                      const AppTypography(
+                        align: TextAlign.left,
+                        type: "h3",
+                        text: "Correo:",
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 5),
+                      AppTypography(
+                        align: TextAlign.left,
+                        type: "body1",
+                        text: userModel.email.toString(),
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 20),
+                      const AppTypography(
+                        align: TextAlign.left,
+                        type: "h3",
+                        text: "Dirección:",
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 5),
+                      AppTypography(
+                        align: TextAlign.left,
+                        type: "body1",
+                        text: userModel.address.toString(),
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 20),
+                      const AppTypography(
+                        align: TextAlign.left,
+                        type: "h3",
+                        text: "Fecha de nacimiento:",
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 5),
+                      AppTypography(
+                        align: TextAlign.left,
+                        type: "body1",
+                        text: birth,
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 20),
+                      const AppTypography(
+                        align: TextAlign.left,
+                        type: "h3",
+                        text: "Fecha Expiración LDC:",
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 5),
+                      AppTypography(
+                        align: TextAlign.left,
+                        type: "body1",
+                        text: lic,
+                        color: app_colors.primary,
+                      ),
+                      const SizedBox(height: 25),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppButton(
+                            text: "Editar",
+                            type: "primary",
+                            onPressed: () => {},
+                          ),
+                          AppButton(
+                              text: "Cerrar sesión",
+                              type: "primary",
+                              onPressed: () async {
+                                var response = await networkHandlerAuth.logout(
+                                    userModel.email.toString(), user.token);
+                                if (response.statusCode == 200) {
+                                  Navigator.pushNamed(context, app_urls.login);
+                                  _goLogin();
+                                }
+                              }),
+                        ],
+                      )
                     ],
-                  )
-                ],
-              ),
-            ),
+                  ),
+                ),
+        );
+      },
     );
   }
 }

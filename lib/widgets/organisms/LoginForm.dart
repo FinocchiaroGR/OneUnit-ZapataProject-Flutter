@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:app/api/apiAuth.dart';
+import 'package:app/api/apiCars.dart';
 import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/consts/urls.dart' as app_urls;
 import 'package:app/styles/icons.dart' as app_icons;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
 class AppLoginForm extends StatefulWidget {
@@ -21,11 +23,12 @@ class AppLoginForm extends StatefulWidget {
 }
 
 class _AppLoginFormState extends State<AppLoginForm> {
-  bool loading = false;
-  bool error = false;
-  bool logedIn = false;
+  late bool loading = false;
+  late bool error = false;
+  final String message = "Usuario no registrado";
   final formKey = GlobalKey<FormState>();
-  ApiLogin networkHandler = ApiLogin();
+  final ApiLogin authNetworkHandler = ApiLogin();
+  final ApiCars carsNetworkHandler = ApiCars();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -41,14 +44,30 @@ class _AppLoginFormState extends State<AppLoginForm> {
       error = false;
       loading = true;
     });
-    var response = await networkHandler.login(email, password);
-    if (response.statusCode.toDouble() == 200) {
-      setUserProvider(response);
-      Navigator.pushNamed(context, app_urls.home);
-      setState(() {
-        loading = false;
-        logedIn = true;
-      });
+    var authResponse = await authNetworkHandler.login(email, password);
+    if (authResponse.statusCode.toDouble() == 200) {
+      setUserProvider(authResponse);
+
+      var carsResponse = await carsNetworkHandler.getCars(
+          jsonDecode(authResponse.body)['userId'].toString(),
+          jsonDecode(authResponse.body)['token'].toString());
+
+      if (carsResponse.statusCode == 200) {
+        setCarsProvider(jsonDecode(authResponse.body)['userId'].toString(),
+            jsonDecode(authResponse.body)['token'].toString(), carsResponse);
+
+        Navigator.pushNamed(context, app_urls.home);
+
+        setState(() {
+          dispose();
+          loading = false;
+        });
+      } else {
+        setState(() {
+          error = true;
+          loading = false;
+        });
+      }
     } else {
       setState(() {
         error = true;
@@ -56,6 +75,10 @@ class _AppLoginFormState extends State<AppLoginForm> {
       });
     }
   }
+
+  void setCarsProvider(String id, String token, Response response) =>
+      Provider.of<UserProvider>(context, listen: false)
+          .saveCars(id, token, response);
 
   void setUserProvider(response) =>
       Provider.of<UserProvider>(context, listen: false).signIn(
@@ -70,10 +93,10 @@ class _AppLoginFormState extends State<AppLoginForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           error
-              ? const SizedBox(
+              ? SizedBox(
                   height: 25,
                   child: AppTypography(
-                    text: "Usuario no registrado",
+                    text: message,
                     type: "body2",
                     color: Colors.red,
                   ))
