@@ -14,7 +14,12 @@ class ApiLogin {
         body:
             jsonEncode(<String, String>{'email': email, 'password': password}),
       );
-      return response;
+      var jsonRespond = json.encode({
+        'id': jsonDecode(response.body)["userId"].toString(),
+        'token': jsonDecode(response.body)["token"].toString(),
+        'status': response.statusCode,
+      });
+      return jsonRespond;
     } catch (e) {
       log(e.toString());
     }

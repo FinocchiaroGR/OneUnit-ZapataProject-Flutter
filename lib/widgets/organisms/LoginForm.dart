@@ -45,16 +45,17 @@ class _AppLoginFormState extends State<AppLoginForm> {
       loading = true;
     });
     var authResponse = await authNetworkHandler.login(email, password);
-    if (authResponse.statusCode.toDouble() == 200) {
-      setUserProvider(authResponse);
+    if (jsonDecode(authResponse)['status'] == 200) {
+      setUserProvider(jsonDecode(authResponse)['id'].toString(),
+          jsonDecode(authResponse)['token'].toString());
 
       var carsResponse = await carsNetworkHandler.getCars(
-          jsonDecode(authResponse.body)['userId'].toString(),
-          jsonDecode(authResponse.body)['token'].toString());
+          jsonDecode(authResponse)['id'].toString(),
+          jsonDecode(authResponse)['token'].toString());
 
-      if (carsResponse.statusCode == 200) {
-        setCarsProvider(jsonDecode(authResponse.body)['userId'].toString(),
-            jsonDecode(authResponse.body)['token'].toString(), carsResponse);
+      if (jsonDecode(carsResponse)['status'] == 200) {
+        setCarsProvider(jsonDecode(authResponse)['id'].toString(),
+            jsonDecode(authResponse)['token'].toString(), carsResponse);
 
         Navigator.pushNamed(context, app_urls.home);
 
@@ -76,14 +77,12 @@ class _AppLoginFormState extends State<AppLoginForm> {
     }
   }
 
-  void setCarsProvider(String id, String token, Response response) =>
+  void setCarsProvider(String id, String token, response) =>
       Provider.of<UserProvider>(context, listen: false)
           .saveCars(id, token, response);
 
-  void setUserProvider(response) =>
-      Provider.of<UserProvider>(context, listen: false).signIn(
-          jsonDecode(response.body)['userId'].toString(),
-          jsonDecode(response.body)['token'].toString());
+  void setUserProvider(String id, String token) =>
+      Provider.of<UserProvider>(context, listen: false).signIn(id, token);
 
   @override
   Widget build(BuildContext context) {

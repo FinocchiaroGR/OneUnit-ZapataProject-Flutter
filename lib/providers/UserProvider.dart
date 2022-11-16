@@ -21,10 +21,9 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void saveCars(String id, String token, Response response) {
-    var responseBody = jsonDecode(response.body);
-    for (int i = 0; i < responseBody.length; i++) {
-      _cars!.add(CarModel.fromJson(responseBody[i]));
+  void saveCars(String id, String token, jsonRespond) {
+    for (int i = 0; i < jsonDecode(jsonRespond)["body"].length; i++) {
+      _cars!.add(CarModel.fromJson(jsonDecode(jsonRespond)["body"][i]));
       notifyListeners();
     }
   }
