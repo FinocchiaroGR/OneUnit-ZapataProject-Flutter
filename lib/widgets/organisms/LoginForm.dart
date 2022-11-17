@@ -12,7 +12,6 @@ import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/consts/urls.dart' as app_urls;
 import 'package:app/styles/icons.dart' as app_icons;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
 class AppLoginForm extends StatefulWidget {
