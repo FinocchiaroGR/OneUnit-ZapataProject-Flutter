@@ -2,7 +2,7 @@ class CarModel {
   int? id;
   String? brandName;
   String? modelName;
-  String? modelYear;
+  int? modelYear;
   String? image;
   String? description;
   int? geofenceRadius;
@@ -35,10 +35,10 @@ CarModel _$CarModelFromJson(Map<String, dynamic> json) {
     id: json["id"] as int,
     brandName: json["model"]["brand"]["name"] as String,
     modelName: json["model"]["name"] as String,
-    modelYear: json["model"]["year"] as String,
+    modelYear: json["model"]["year"] as int,
     image: json["image"] as String,
     description: json["description"] as String,
-    geofenceRadius: json["geofenceRadius"] as int,
+    geofenceRadius: json["geofenceRadius"] as int?,
     velocityLimit: json["velocityLimit"] as int,
     insurancePolicyValidity: json["insurancePolicyValidity"] as String?,
     verificationValidity: json["verificationValidity"] as String?,
