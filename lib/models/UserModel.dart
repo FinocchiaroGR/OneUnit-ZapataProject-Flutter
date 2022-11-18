@@ -18,6 +18,17 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
+
+  Delete() {
+    return UserModel(
+      id: null,
+      name: null,
+      email: null,
+      address: null,
+      birthDate: null,
+      licenceValidity: null,
+    );
+  }
 }
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) {

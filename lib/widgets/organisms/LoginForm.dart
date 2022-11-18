@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/api/apiAuth.dart';
 import 'package:app/api/apiCars.dart';
+import 'package:app/api/apiUserInfo.dart';
 import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,7 @@ class _AppLoginFormState extends State<AppLoginForm> {
   final formKey = GlobalKey<FormState>();
   final ApiLogin authNetworkHandler = ApiLogin();
   final ApiCars carsNetworkHandler = ApiCars();
+  final ApiUserInfo userNetworkHandler = ApiUserInfo();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -44,19 +46,28 @@ class _AppLoginFormState extends State<AppLoginForm> {
       loading = true;
     });
     var authResponse = await authNetworkHandler.login(email, password);
-    if (jsonDecode(authResponse)['status'] == 200) {
+    if (authResponse != null) {
       setUserProvider(jsonDecode(authResponse)['id'].toString(),
           jsonDecode(authResponse)['token'].toString());
 
       var carsResponse = await carsNetworkHandler.getCars(
           jsonDecode(authResponse)['id'].toString(),
           jsonDecode(authResponse)['token'].toString());
-
-      if (jsonDecode(carsResponse)['status'] == 200) {
-        setCarsProvider(jsonDecode(authResponse)['id'].toString(),
-            jsonDecode(authResponse)['token'].toString(), carsResponse);
-
-        Navigator.pushNamed(context, app_urls.home);
+      debugPrint(carsResponse.toString());
+      if (carsResponse != null) {
+        setCarsProvider(carsResponse);
+        var userResponse = await userNetworkHandler.getUser(
+            jsonDecode(authResponse)['id'].toString(),
+            jsonDecode(authResponse)['token'].toString());
+        setUserInfoProvider(userResponse);
+        if (userResponse != null) {
+          Navigator.pushNamed(context, app_urls.home);
+        } else {
+          setState(() {
+            dispose();
+            loading = false;
+          });
+        }
 
         setState(() {
           dispose();
@@ -76,9 +87,11 @@ class _AppLoginFormState extends State<AppLoginForm> {
     }
   }
 
-  void setCarsProvider(String id, String token, response) =>
-      Provider.of<UserProvider>(context, listen: false)
-          .saveCars(id, token, response);
+  void setUserInfoProvider(response) =>
+      Provider.of<UserProvider>(context, listen: false).getInfo(response);
+
+  void setCarsProvider(response) =>
+      Provider.of<UserProvider>(context, listen: false).saveCars(response);
 
   void setUserProvider(String id, String token) =>
       Provider.of<UserProvider>(context, listen: false).signIn(id, token);

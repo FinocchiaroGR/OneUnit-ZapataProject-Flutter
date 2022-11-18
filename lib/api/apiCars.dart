@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app/consts/api_urls.dart' as api_urls;
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class ApiCars {
@@ -16,7 +15,6 @@ class ApiCars {
           "Content-Type": "application/json"
         },
       );
-      debugPrint(response.body.toString());
       var jsonDecoded = jsonDecode(response.body);
       var jsonRespond = json.encode({
         'body': jsonDecoded,

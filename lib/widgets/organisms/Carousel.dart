@@ -1,3 +1,6 @@
+import 'package:app/models/CarModel.dart';
+import 'package:app/utils/launch_whatsapp.dart';
+import 'package:app/widgets/molecules/IconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -5,13 +8,14 @@ import 'package:app/widgets/atoms/Typography.dart';
 
 import 'package:app/styles/icons.dart' as app_icons;
 import 'package:app/styles/colors.dart' as app_colors;
+import 'package:app/consts/urls.dart' as app_urls;
 
 class AppCarousel extends StatefulWidget {
-  final List<Map<dynamic, dynamic>> items;
+  final List<CarModel> cars;
 
   const AppCarousel({
     super.key,
-    required this.items,
+    required this.cars,
   });
 
   @override
@@ -21,10 +25,12 @@ class AppCarousel extends StatefulWidget {
 class _StatefulAppCarouselState extends State<AppCarousel> {
   final CarouselController _controller = CarouselController();
   String _name = '';
+  int _idGPS = 0;
 
   void _changeName(index, reason) {
     setState(() {
-      _name = widget.items[index]['name'];
+      _name = "${widget.cars[index].brandName} ${widget.cars[index].modelYear}";
+      _idGPS = index;
     });
   }
 
@@ -36,8 +42,9 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> slides =
-        widget.items.map((item) => Image.asset(item['src'])).toList();
+    List<Widget> slides = widget.cars
+        .map((item) => Image.network(item.image.toString()))
+        .toList();
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12),
@@ -83,7 +90,51 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
                 ),
               ),
             ],
-          )
+          ),
+          const SizedBox(height: 32),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              AppIconButton(
+                text: "Mis \ndocumentos",
+                icon: app_icons.documents,
+                onPressed: () =>
+                    Navigator.pushNamed(context, app_urls.documents),
+              ),
+              AppIconButton(
+                text: "Localizar \nautomóvil",
+                icon: app_icons.geoFence,
+                onPressed: () =>
+                    Navigator.pushNamed(context, app_urls.carLocation),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              AppIconButton(
+                text: "Agendar \nservicio",
+                icon: app_icons.service,
+                onPressed: () => launchWhatsapp(
+                  context: context,
+                  phone: "+524426693737",
+                  text: "Quiero agendar un servicio",
+                ),
+              ),
+              AppIconButton(
+                text: "Vender \nautomóvil",
+                icon: app_icons.sellCar,
+                onPressed: () => launchWhatsapp(
+                  context: context,
+                  phone: "+524426693737",
+                  text: "Quiero vender mi auto",
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
