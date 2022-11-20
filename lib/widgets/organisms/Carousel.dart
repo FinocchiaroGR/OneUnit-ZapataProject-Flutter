@@ -97,7 +97,7 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
             mainAxisSize: MainAxisSize.max,
             children: [
               AppIconButton(
-                text: "Mis \ndocumentos",
+                text: "Documentos \nvigentes",
                 icon: app_icons.documents,
                 onPressed: () =>
                     Navigator.pushNamed(context, app_urls.documents),

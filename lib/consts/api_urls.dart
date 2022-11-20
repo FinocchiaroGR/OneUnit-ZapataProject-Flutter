@@ -11,4 +11,4 @@ Uri user = Uri.parse("$baseurl/clients/");
 Uri login = Uri.parse("$baseurl/auth/login");
 Uri logout = Uri.parse("$baseurl/auth/logout");
 Uri cars = Uri.parse("$baseurl/cars/client/");
-Uri userValidity = Uri.parse("$baseurl/modUserValidity");
+Uri userValidity = Uri.parse("$baseurl/clients/update-license/");

@@ -12,16 +12,11 @@ class Documents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppPage(
-      title: "Documentos",
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AppValidity(
-            circulationCard: circulationCardValidity,
-            insurancePolicy: insurancePolicyValidity,
-            vehicleVerification: vehicleVerificationValidity,
-          )
-        ],
+      title: "Vigencias",
+      body: AppValidity(
+        circulationCard: circulationCardValidity,
+        insurancePolicy: insurancePolicyValidity,
+        vehicleVerification: vehicleVerificationValidity,
       ),
     );
   }

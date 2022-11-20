@@ -53,7 +53,6 @@ class _AppLoginFormState extends State<AppLoginForm> {
       var carsResponse = await carsNetworkHandler.getCars(
           jsonDecode(authResponse)['id'].toString(),
           jsonDecode(authResponse)['token'].toString());
-      debugPrint(carsResponse.toString());
       if (carsResponse != null) {
         setCarsProvider(carsResponse);
         var userResponse = await userNetworkHandler.getUser(

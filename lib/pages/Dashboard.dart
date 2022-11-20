@@ -36,13 +36,11 @@ class Dashboard extends StatelessWidget {
         return AppPage(
           title: "Bienvenido",
           navigationCurrentIndex: 1,
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                AppCarousel(cars: cars.cars),
-              ],
-            ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              AppCarousel(cars: cars.cars),
+            ],
           ),
         );
       },
