@@ -6,9 +6,12 @@ const baseurl = "http://localhost:1337/api";
 
 If it doesn't work. Use your local ip address
 */
-const baseurl = "http://localhost:1337/api";
+const baseurl = "http://10.0.2.2:1337/api";
 Uri user = Uri.parse("$baseurl/clients/");
 Uri login = Uri.parse("$baseurl/auth/login");
 Uri logout = Uri.parse("$baseurl/auth/logout");
 Uri cars = Uri.parse("$baseurl/cars/client/");
 Uri userValidity = Uri.parse("$baseurl/clients/update-license/");
+Uri carInsuPol = Uri.parse("$baseurl/cars/update-policy/");
+Uri carCirVal = Uri.parse("$baseurl/cars/update-circulation/");
+Uri carVeriVal = Uri.parse("$baseurl/cars/update-verification/");

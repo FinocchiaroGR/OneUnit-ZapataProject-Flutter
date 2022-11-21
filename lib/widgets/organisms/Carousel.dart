@@ -25,12 +25,12 @@ class AppCarousel extends StatefulWidget {
 class _StatefulAppCarouselState extends State<AppCarousel> {
   final CarouselController _controller = CarouselController();
   String _name = '';
-  int _idGPS = 0;
+  int _id = 0;
 
   void _changeName(index, reason) {
     setState(() {
       _name = "${widget.cars[index].brandName} ${widget.cars[index].modelYear}";
-      _idGPS = index;
+      _id = index;
     });
   }
 
@@ -99,8 +99,9 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
               AppIconButton(
                 text: "Documentos \nvigentes",
                 icon: app_icons.documents,
-                onPressed: () =>
-                    Navigator.pushNamed(context, app_urls.documents),
+                onPressed: () => Navigator.pushNamed(
+                    context, app_urls.documents,
+                    arguments: _id),
               ),
               AppIconButton(
                 text: "Localizar \nautomóvil",
