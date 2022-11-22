@@ -24,7 +24,7 @@ class ApiUserInfo {
   Future modValidity(String id, String token, String lic) async {
     try {
       String url = api_urls.userValidity.toString() + id;
-      var response = await http.put(
+      await http.put(
         Uri.parse(url),
         headers: {
           "Authorization": 'Bearer $token',

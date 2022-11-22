@@ -26,7 +26,6 @@ class _UserInfoState extends State<UserInfo> {
   late String birth;
   late String lic;
   late UserModel userModel;
-  late var date;
   DateTime selectedDate = DateTime.now();
   ApiUserInfo networkHandler = ApiUserInfo();
   ApiLogin networkHandlerAuth = ApiLogin();
@@ -58,7 +57,7 @@ class _UserInfoState extends State<UserInfo> {
         firstDate: DateTime(2010),
         lastDate: DateTime(2050));
     if (picked != null) {
-      date = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(picked);
+      var date = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(picked);
       setState(() {
         formatLic(date.toString());
       });
@@ -146,7 +145,7 @@ class _UserInfoState extends State<UserInfo> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

@@ -22,7 +22,6 @@ class _AppValidityState extends State<AppValidity> {
   late String dateString;
   DateTime selectedDate = DateTime.now();
   ApiCars networkHandler = ApiCars();
-  late var date;
 
   String formatDate(date) {
     if (date != null) {
@@ -36,7 +35,6 @@ class _AppValidityState extends State<AppValidity> {
 
   Future<void> _selectDate(
       BuildContext context, String token, car, int type) async {
-    debugPrint(car.toString());
     final DateTime? picked = await showDatePicker(
         context: context,
         locale: const Locale("es", "MX"),
@@ -45,7 +43,7 @@ class _AppValidityState extends State<AppValidity> {
         firstDate: DateTime(2010),
         lastDate: DateTime(2050));
     if (picked != null) {
-      date = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(picked);
+      var date = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(picked);
       setState(() {
         formatDate(date.toString());
       });
@@ -79,25 +77,22 @@ class _AppValidityState extends State<AppValidity> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const AppTypography(
-                          align: TextAlign.left,
-                          type: "h3",
-                          text: "Póliza de seguros",
-                          color: app_colors.primary,
-                        ),
-                        AppTypography(
-                          align: TextAlign.left,
-                          type: "body1",
-                          text:
-                              formatDate(list.cars[id].insurancePolicyValidity),
-                          color: app_colors.primary,
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const AppTypography(
+                        align: TextAlign.left,
+                        type: "h3",
+                        text: "Póliza de seguros",
+                        color: app_colors.primary,
+                      ),
+                      AppTypography(
+                        align: TextAlign.left,
+                        type: "body1",
+                        text: formatDate(list.cars[id].insurancePolicyValidity),
+                        color: app_colors.primary,
+                      ),
+                    ],
                   ),
                 ),
                 IconButton(
@@ -113,25 +108,22 @@ class _AppValidityState extends State<AppValidity> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const AppTypography(
-                          align: TextAlign.left,
-                          type: "h3",
-                          text: "Tarjeta de circulación",
-                          color: app_colors.primary,
-                        ),
-                        AppTypography(
-                          align: TextAlign.left,
-                          type: "body1",
-                          text:
-                              formatDate(list.cars[id].circulationCardValidity),
-                          color: app_colors.primary,
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const AppTypography(
+                        align: TextAlign.left,
+                        type: "h3",
+                        text: "Tarjeta de circulación",
+                        color: app_colors.primary,
+                      ),
+                      AppTypography(
+                        align: TextAlign.left,
+                        type: "body1",
+                        text: formatDate(list.cars[id].circulationCardValidity),
+                        color: app_colors.primary,
+                      ),
+                    ],
                   ),
                 ),
                 IconButton(
@@ -147,24 +139,22 @@ class _AppValidityState extends State<AppValidity> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const AppTypography(
-                          align: TextAlign.left,
-                          type: "h3",
-                          text: "Verificación vehicular",
-                          color: app_colors.primary,
-                        ),
-                        AppTypography(
-                          align: TextAlign.left,
-                          type: "body1",
-                          text: formatDate(list.cars[id].verificationValidity),
-                          color: app_colors.primary,
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const AppTypography(
+                        align: TextAlign.left,
+                        type: "h3",
+                        text: "Verificación vehicular",
+                        color: app_colors.primary,
+                      ),
+                      AppTypography(
+                        align: TextAlign.left,
+                        type: "body1",
+                        text: formatDate(list.cars[id].verificationValidity),
+                        color: app_colors.primary,
+                      ),
+                    ],
                   ),
                 ),
                 IconButton(

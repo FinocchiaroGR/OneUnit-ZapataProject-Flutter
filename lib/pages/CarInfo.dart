@@ -8,12 +8,13 @@ import 'package:app/styles/colors.dart' as app_colors;
 import 'package:provider/provider.dart';
 
 class CarInfo extends StatelessWidget {
-  final String carImage = 'assets/images/car-placeholder.jpg';
+  final String carImage = 'http://localhost:1337/images/';
 
   const CarInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final id = (ModalRoute.of(context)?.settings.arguments as int);
     return Consumer<UserProvider>(
       builder: (context, list, child) {
         return AppPage(
@@ -21,14 +22,14 @@ class CarInfo extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset(carImage),
+                Image.network(carImage + list.cars[id].image.toString()),
                 AppTypography(
                   align: TextAlign.center,
                   type: "h2",
                   text: [
-                    list.cars[0].brandName,
-                    list.cars[0].modelName,
-                    list.cars[0].modelYear
+                    list.cars[id].brandName,
+                    list.cars[id].modelName,
+                    list.cars[id].modelYear
                   ].join(" "),
                   color: app_colors.primary,
                 ),
@@ -45,7 +46,7 @@ class CarInfo extends StatelessWidget {
                     AppTypography(
                       align: TextAlign.left,
                       type: "body1",
-                      text: list.cars[0].description.toString(),
+                      text: list.cars[id].description.toString(),
                       color: app_colors.primary,
                     ),
                   ],

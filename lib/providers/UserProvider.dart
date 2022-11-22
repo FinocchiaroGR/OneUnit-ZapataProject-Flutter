@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:app/models/CarModel.dart';
 import 'package:app/models/UserModel.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 class UserProvider extends ChangeNotifier {
   late String _id;

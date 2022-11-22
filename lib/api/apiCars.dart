@@ -30,7 +30,7 @@ class ApiCars {
   Future modPolicy(String id, String token, String date) async {
     try {
       String url = api_urls.carInsuPol.toString() + id;
-      var response = await http.put(
+      await http.put(
         Uri.parse(url),
         headers: {
           "Authorization": 'Bearer $token',
@@ -46,7 +46,7 @@ class ApiCars {
   Future modCirculation(String id, String token, String date) async {
     try {
       String url = api_urls.carCirVal.toString() + id;
-      var response = await http.put(
+      await http.put(
         Uri.parse(url),
         headers: {
           "Authorization": 'Bearer $token',
@@ -62,7 +62,7 @@ class ApiCars {
   Future modVerification(String id, String token, String date) async {
     try {
       String url = api_urls.carVeriVal.toString() + id;
-      var response = await http.put(
+      await http.put(
         Uri.parse(url),
         headers: {
           "Authorization": 'Bearer $token',
