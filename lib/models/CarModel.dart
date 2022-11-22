@@ -1,8 +1,9 @@
 class CarModel {
   int? id;
+  int? idGPS;
   String? brandName;
   String? modelName;
-  String? modelYear;
+  int? modelYear;
   String? image;
   String? description;
   int? geofenceRadius;
@@ -13,6 +14,7 @@ class CarModel {
 
   CarModel({
     this.id,
+    this.idGPS,
     this.brandName,
     this.modelName,
     this.modelYear,
@@ -33,12 +35,13 @@ class CarModel {
 CarModel _$CarModelFromJson(Map<String, dynamic> json) {
   return CarModel(
     id: json["id"] as int,
+    idGPS: json["gps"]["id"] as int,
     brandName: json["model"]["brand"]["name"] as String,
     modelName: json["model"]["name"] as String,
-    modelYear: json["model"]["year"] as String,
-    image: json["image"] as String,
+    modelYear: json["model"]["year"] as int,
+    image: json["image"]["alias"] as String,
     description: json["description"] as String,
-    geofenceRadius: json["geofenceRadius"] as int,
+    geofenceRadius: json["geofenceRadius"] as int?,
     velocityLimit: json["velocityLimit"] as int,
     insurancePolicyValidity: json["insurancePolicyValidity"] as String?,
     verificationValidity: json["verificationValidity"] as String?,
@@ -48,6 +51,7 @@ CarModel _$CarModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$CarModelToJson(CarModel instance) => <String, dynamic>{
       "id": instance.id,
+      "idGPS": instance.idGPS,
       "brandName": instance.brandName,
       "modelName": instance.modelName,
       "modelYear": instance.modelYear,

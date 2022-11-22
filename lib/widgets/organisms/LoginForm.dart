@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/api/apiAuth.dart';
 import 'package:app/api/apiCars.dart';
+import 'package:app/api/apiUserInfo.dart';
 import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,6 @@ import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/consts/urls.dart' as app_urls;
 import 'package:app/styles/icons.dart' as app_icons;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
 class AppLoginForm extends StatefulWidget {
@@ -29,6 +29,7 @@ class _AppLoginFormState extends State<AppLoginForm> {
   final formKey = GlobalKey<FormState>();
   final ApiLogin authNetworkHandler = ApiLogin();
   final ApiCars carsNetworkHandler = ApiCars();
+  final ApiUserInfo userNetworkHandler = ApiUserInfo();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -45,18 +46,27 @@ class _AppLoginFormState extends State<AppLoginForm> {
       loading = true;
     });
     var authResponse = await authNetworkHandler.login(email, password);
-    if (authResponse.statusCode.toDouble() == 200) {
-      setUserProvider(authResponse);
+    if (authResponse != null) {
+      setUserProvider(jsonDecode(authResponse)['id'].toString(),
+          jsonDecode(authResponse)['token'].toString());
 
       var carsResponse = await carsNetworkHandler.getCars(
-          jsonDecode(authResponse.body)['userId'].toString(),
-          jsonDecode(authResponse.body)['token'].toString());
-
-      if (carsResponse.statusCode == 200) {
-        setCarsProvider(jsonDecode(authResponse.body)['userId'].toString(),
-            jsonDecode(authResponse.body)['token'].toString(), carsResponse);
-
-        Navigator.pushNamed(context, app_urls.home);
+          jsonDecode(authResponse)['id'].toString(),
+          jsonDecode(authResponse)['token'].toString());
+      if (carsResponse != null) {
+        setCarsProvider(carsResponse);
+        var userResponse = await userNetworkHandler.getUser(
+            jsonDecode(authResponse)['id'].toString(),
+            jsonDecode(authResponse)['token'].toString());
+        setUserInfoProvider(userResponse);
+        if (userResponse != null) {
+          Navigator.pushNamed(context, app_urls.home);
+        } else {
+          setState(() {
+            dispose();
+            loading = false;
+          });
+        }
 
         setState(() {
           dispose();
@@ -76,14 +86,14 @@ class _AppLoginFormState extends State<AppLoginForm> {
     }
   }
 
-  void setCarsProvider(String id, String token, Response response) =>
-      Provider.of<UserProvider>(context, listen: false)
-          .saveCars(id, token, response);
+  void setUserInfoProvider(response) =>
+      Provider.of<UserProvider>(context, listen: false).getInfo(response);
 
-  void setUserProvider(response) =>
-      Provider.of<UserProvider>(context, listen: false).signIn(
-          jsonDecode(response.body)['userId'].toString(),
-          jsonDecode(response.body)['token'].toString());
+  void setCarsProvider(response) =>
+      Provider.of<UserProvider>(context, listen: false).saveCars(response);
+
+  void setUserProvider(String id, String token) =>
+      Provider.of<UserProvider>(context, listen: false).signIn(id, token);
 
   @override
   Widget build(BuildContext context) {
