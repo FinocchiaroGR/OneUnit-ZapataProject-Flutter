@@ -15,30 +15,23 @@ class ApiUserInfo {
           "Content-Type": "application/json"
         },
       );
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return json.decode(response.body);
-      }
+      return json.decode(response.body);
     } catch (e) {
       log(e.toString());
     }
   }
 
-  Future modValidity() async {
+  Future modValidity(String id, String token, String lic) async {
     try {
-      //String token
-      var response = await http.put(
-        api_urls.userValidity,
-        // headers: {"Authorization": "token"},
-        headers: {"Content-Type": "application/json"},
+      String url = api_urls.userValidity.toString() + id;
+      await http.put(
+        Uri.parse(url),
+        headers: {
+          "Authorization": 'Bearer $token',
+          "Content-Type": "application/json"
+        },
+        body: jsonEncode(<String, String>{'licenceValidity': lic}),
       );
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return json.decode(response.body);
-      }
-
-      log(response.body);
-      log(response.statusCode.toString());
     } catch (e) {
       log(e.toString());
     }

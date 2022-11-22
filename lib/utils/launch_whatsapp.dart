@@ -8,7 +8,7 @@ void launchWhatsapp({
   required String text,
 }) async {
   var whatsapp = phone; //+92xx enter like this
-  var whatsappURlAndroid = "whatsapp://send?phone=" + whatsapp + "&text=$text";
+  var whatsappURlAndroid = "whatsapp://send?phone=$whatsapp&text=$text";
   var whatsappURLIos = "https://wa.me/$whatsapp?text=${Uri.tryParse(text)}";
   if (Platform.isIOS) {
     // for iOS phone only

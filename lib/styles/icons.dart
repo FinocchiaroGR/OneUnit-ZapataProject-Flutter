@@ -13,6 +13,7 @@ const user = Icons.person_sharp;
 const help = Icons.help_sharp;
 const geoFence = Icons.share_location;
 const lock = Icons.lock;
+const pencil = Icons.edit;
 
 /*
 const person = Icon(Icons.person);
