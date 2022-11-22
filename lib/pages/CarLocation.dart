@@ -1,4 +1,5 @@
 import 'package:app/providers/UserProvider.dart';
+import 'package:app/widgets/molecules/Switch.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/widgets/organisms/Page.dart';
@@ -36,60 +37,65 @@ class CarLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
+    final double height = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top +
+            MediaQuery.of(context).padding.bottom +
+            kToolbarHeight +
+            kBottomNavigationBarHeight +
+            MediaQuery.of(context).viewPadding.top +
+            MediaQuery.of(context).viewPadding.bottom);
     return Consumer<UserProvider>(
       builder: (context, list, child) {
         return AppPage(
-          title: list.cars[arguments["idCar"]].brandName.toString() +
-              list.cars[arguments["idCar"]].modelYear.toString(),
+          title:
+              "${list.cars[arguments["idCar"]].brandName} ${list.cars[arguments["idCar"]].modelYear}",
           hasPadding: false,
-          body: SizedBox(
-            height: MediaQuery.of(context).size.height -
-                (MediaQuery.of(context).padding.top +
-                    MediaQuery.of(context).padding.bottom +
-                    kToolbarHeight +
-                    kBottomNavigationBarHeight +
-                    MediaQuery.of(context).viewPadding.top +
-                    MediaQuery.of(context).viewPadding.bottom),
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 9,
-                  child: Stack(
-                    children: <Widget>[
-                      AppLocationMap(
-                        latitude: latitude,
-                        longitude: longitude,
-                        circleRadius: circleRadius,
-                      ),
-                      Positioned(
-                        top: 24,
-                        right: 24,
-                        child: Column(
-                          children: [
-                            AppRoundInfo(text: "$carVelocity\nkm/hr"),
-                            const SizedBox(height: 8),
-                            AppRoundButton(
-                                text: "Edit",
-                                onPressed: () => _showLimitsModal(context)),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: AppLargeIconButton(
-                    icon: app_icons.arrowDown,
-                    text: "Información del auto",
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      app_urls.carInfo,
-                      arguments: arguments["idCar"],
+          body: Column(
+            children: [
+              Expanded(
+                flex: 9,
+                child: Stack(
+                  children: <Widget>[
+                    AppLocationMap(
+                      latitude: latitude,
+                      longitude: longitude,
+                      circleRadius: circleRadius,
                     ),
+                    const Positioned(
+                      bottom: 24,
+                      right: 24,
+                      left: 24,
+                      child:
+                          AppSwitch(), // My cards showing in front of the Map's
+                    ),
+                    Positioned(
+                      top: 24,
+                      right: 24,
+                      child: Column(
+                        children: [
+                          AppRoundInfo(text: "$carVelocity\nkm/hr"),
+                          const SizedBox(height: 8),
+                          AppRoundButton(
+                              text: "Edit",
+                              onPressed: () => _showLimitsModal(context)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: AppLargeIconButton(
+                  icon: app_icons.arrowDown,
+                  text: "Información del auto",
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    app_urls.carInfo,
+                    arguments: arguments["idCar"],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
