@@ -10,10 +10,12 @@ class UserProvider extends ChangeNotifier {
   late String _token;
   final List<CarModel> _cars = [];
   late UserModel _user;
+  late int _idGPS;
 
   String get id => _id;
   String get token => _token;
   UserModel get user => _user;
+  int get idGPS => _idGPS;
 
   UnmodifiableListView<CarModel> get cars => UnmodifiableListView(_cars);
 
@@ -34,14 +36,20 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
+  void saveIdGps(int idGPS) {
+    _idGPS = idGPS;
+  }
+
   void deleteAll() {
     _id = "";
     _token = "";
     _cars.clear();
     _user = _user.Delete();
+    _idGPS = 0;
   }
 
   String? getID() => _id;
   String? getToken() => _token;
   List<CarModel>? getCars() => _cars;
+  int? getIdGPS() => _idGPS;
 }

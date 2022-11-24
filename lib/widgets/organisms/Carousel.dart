@@ -111,11 +111,18 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
                   AppIconButton(
                     text: "Localizar \nautomóvil",
                     icon: app_icons.geoFence,
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      app_urls.carLocation,
-                      arguments: {"idCar": _id, "idGPS": list.cars[_id].idGPS},
-                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        app_urls.carLocation,
+                        arguments: {
+                          "idCar": _id,
+                          "idGPS": list.cars[_id].idGPS
+                        },
+                      );
+                      Provider.of<UserProvider>(context, listen: false)
+                          .saveIdGps(list.cars[_id].idGPS!.toInt());
+                    },
                   ),
                 ],
               ),

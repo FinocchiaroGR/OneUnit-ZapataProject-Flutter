@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app/consts/api_urls.dart' as api_urls;
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class ApiLogin {
@@ -35,6 +36,7 @@ class ApiLogin {
         },
         body: jsonEncode(<String, String>{'email': email}),
       );
+      debugPrint(response.toString());
       return response;
     } catch (e) {
       log(e.toString());
