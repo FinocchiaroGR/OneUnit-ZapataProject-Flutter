@@ -19,7 +19,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
   static const Map<int, String> _pagesMap = {
     0: app_urls.userInfo,
     1: app_urls.home,
-    2: app_urls.componentsShowcase,
+    2: app_urls.faqs,
   };
 
   void _onItemTapped(int index) {
