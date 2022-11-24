@@ -37,6 +37,7 @@ class _CarLocationState extends State<CarLocation> {
   late double geofenceValue = 0;
   late double velocityValue = 10;
   late bool active = false;
+  Timer? timer;
 
   late int? id = Provider.of<UserProvider>(context, listen: false).getIdGPS();
   late String? token =
@@ -45,8 +46,15 @@ class _CarLocationState extends State<CarLocation> {
   @override
   void initState() {
     super.initState();
-    debugPrint(id.toString());
     fetchData(id, token);
+    timer = Timer.periodic(
+        const Duration(seconds: 15), (Timer t) => update(id, token));
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   void fetchData(int? id, String? token) async {
@@ -55,6 +63,21 @@ class _CarLocationState extends State<CarLocation> {
       loading = true;
     });
 
+    var gpsRes = await gpsHandler.getGpsInfo(id!, token!);
+
+    if (gpsRes != null) {
+      setState(() {
+        latitude = jsonDecode(gpsRes.body)["latitude"].toDouble();
+        longitude = jsonDecode(gpsRes.body)["longitude"].toDouble();
+        //circleRadius = jsonDecode(gpsRes.body)["geofenceRadiusKm"] as double;
+        carVelocity = jsonDecode(gpsRes.body)["velocity"].toDouble();
+        error = false;
+        loading = false;
+      });
+    }
+  }
+
+  void update(int? id, String? token) async {
     var gpsRes = await gpsHandler.getGpsInfo(id!, token!);
 
     if (gpsRes != null) {
@@ -112,6 +135,8 @@ class _CarLocationState extends State<CarLocation> {
                             latitude: latitude,
                             longitude: longitude,
                             circleRadius: circleRadius,
+                            carName:
+                                "${list.cars[arguments["idCar"]].brandName} ${list.cars[arguments["idCar"]].modelYear}",
                           ),
                           const Positioned(
                             bottom: 24,
@@ -138,14 +163,16 @@ class _CarLocationState extends State<CarLocation> {
               ),
               Expanded(
                 child: AppLargeIconButton(
-                  icon: app_icons.arrowDown,
-                  text: "Información del auto",
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    app_urls.carInfo,
-                    arguments: arguments["idCar"],
-                  ),
-                ),
+                    icon: app_icons.arrowDown,
+                    text: "Información del auto",
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        app_urls.carInfo,
+                        arguments: arguments["idCar"],
+                      );
+                      dispose();
+                    }),
               ),
             ],
           ),

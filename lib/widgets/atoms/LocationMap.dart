@@ -9,6 +9,7 @@ class AppLocationMap extends StatefulWidget {
   final double circleRadius;
   final double latitude;
   final double longitude;
+  final String carName;
 
   const AppLocationMap({
     super.key,
@@ -16,6 +17,7 @@ class AppLocationMap extends StatefulWidget {
     this.circleRadius = 100,
     required this.latitude,
     required this.longitude,
+    required this.carName,
   });
 
   @override
@@ -24,6 +26,7 @@ class AppLocationMap extends StatefulWidget {
 
 class _AppLocationMapState extends State<AppLocationMap> {
   final Completer<GoogleMapController> _controller = Completer();
+  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
@@ -32,6 +35,16 @@ class _AppLocationMapState extends State<AppLocationMap> {
   @override
   Widget build(BuildContext context) {
     final LatLng center = LatLng(widget.latitude, widget.longitude);
+    final Marker marker = Marker(
+      markerId: MarkerId(widget.carName),
+      position: center,
+      infoWindow:
+          InfoWindow(title: 'Aquí esta su auto: ', snippet: widget.carName),
+    );
+
+    setState(() {
+      markers[MarkerId(widget.carName)] = marker;
+    });
     return GoogleMap(
       onMapCreated: _onMapCreated,
       mapType: MapType.normal,
@@ -40,6 +53,7 @@ class _AppLocationMapState extends State<AppLocationMap> {
       compassEnabled: true,
       myLocationEnabled: true,
       myLocationButtonEnabled: true,
+      markers: Set<Marker>.of(markers.values),
       minMaxZoomPreference: const MinMaxZoomPreference(14, 18),
       initialCameraPosition: CameraPosition(
         target: center,

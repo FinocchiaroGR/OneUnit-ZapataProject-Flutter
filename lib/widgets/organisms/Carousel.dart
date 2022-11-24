@@ -45,8 +45,8 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
   @override
   Widget build(BuildContext context) {
     List<Widget> slides = widget.cars
-        .map(
-            (car) => Image.network("http://localhost:1337/images/${car.image}"))
+        .map((car) =>
+            Image.network("http://54.176.51.35:1337/images/${car.image}"))
         .toList();
 
     return Consumer<UserProvider>(
@@ -136,7 +136,7 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
                     icon: app_icons.service,
                     onPressed: () => launchWhatsapp(
                       context: context,
-                      phone: "+524426693737",
+                      phone: "+524421697569",
                       text: "Quiero agendar un servicio",
                     ),
                   ),
@@ -145,7 +145,7 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
                     icon: app_icons.sellCar,
                     onPressed: () => launchWhatsapp(
                       context: context,
-                      phone: "+524426693737",
+                      phone: "+524421697569",
                       text: "Quiero vender mi auto",
                     ),
                   ),

@@ -36,7 +36,6 @@ class ApiLogin {
         },
         body: jsonEncode(<String, String>{'email': email}),
       );
-      debugPrint(response.toString());
       return response;
     } catch (e) {
       log(e.toString());
