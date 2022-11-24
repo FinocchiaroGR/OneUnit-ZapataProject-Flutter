@@ -8,7 +8,7 @@ import 'package:app/styles/colors.dart' as app_colors;
 import 'package:provider/provider.dart';
 
 class CarInfo extends StatelessWidget {
-  final String carImage = 'http://localhost:1337/images/';
+  final String carImage = 'http://54.176.51.35:1337/images/';
 
   const CarInfo({super.key});
 

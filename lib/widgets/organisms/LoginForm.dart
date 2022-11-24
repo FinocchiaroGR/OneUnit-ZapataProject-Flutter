@@ -189,8 +189,8 @@ class _AppLoginFormState extends State<AppLoginForm> {
                         error = false;
                       });
                       if (formKey.currentState!.validate()) {
-                        fetchData(
-                            _emailController.text, _passwordController.text);
+                        fetchData(_emailController.text.toLowerCase(),
+                            _passwordController.text);
                       }
                     },
                   ),
