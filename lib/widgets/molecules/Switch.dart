@@ -3,16 +3,65 @@ import 'package:flutter/material.dart';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/styles/colors.dart' as app_colors;
+import 'package:app/api/ApiGps.dart';
 
 class AppSwitch extends StatefulWidget {
-  const AppSwitch({super.key});
+  final int? carId;
+  final String? token;
+  final double? geofenceValue;
+
+  const AppSwitch({
+    super.key,
+    required this.carId,
+    required this.token,
+    required this.geofenceValue
+  });
 
   @override
-  State<StatefulWidget> createState() => _AppSwitchState();
+  State<AppSwitch> createState() => _AppSwitchState();
 }
 
 class _AppSwitchState extends State<AppSwitch> {
+  final ApiGps gpsHandler = ApiGps();
   int value = 1;
+  Color switchColor = app_colors.primary;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void onChange(val) {
+    setState(() => value = val);
+    if (val == 0) {
+      activateGeofence(widget.carId!, widget.token!, widget.geofenceValue!.toInt());
+    } else if (val == 2) {
+      activateGeofence(widget.carId!, widget.token!, 0);
+    } else {
+      deactivateGeofence(widget.carId!, widget.token!);
+    }
+  }
+
+  void activateGeofence(int carId, String token, int carGeofence) async {
+    var gpsRes = await gpsHandler.activateGeofence(carId, token, carGeofence);
+
+    if (gpsRes.body != null) {
+      switchColor = Color.fromARGB(255, 24, 117, 24);
+    } else {
+      switchColor = Color.fromARGB(255, 112, 31, 16);
+    }
+  }
+
+  void deactivateGeofence(int carId, String token) async {
+    var gpsRes = await gpsHandler.deactivateGeofence(carId, token);
+
+    if (gpsRes.body != null) {
+      switchColor = app_colors.primary;
+    } else {
+      switchColor = Color.fromARGB(255, 112, 31, 16);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +69,7 @@ class _AppSwitchState extends State<AppSwitch> {
         const AppTypography(
           text: 'Selecciona Modo',
           align: TextAlign.center,
-          color: app_colors.primary,
+          color: Color.fromARGB(255, 14, 14, 19),
           type: 'body1',
         ),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -67,9 +116,9 @@ class _AppSwitchState extends State<AppSwitch> {
             borderColor: Colors.transparent,
             innerColor: Colors.transparent,
             colorBuilder: (i) {
-              return app_colors.primary;
+              return switchColor;
             },
-            onChanged: (i) => setState(() => value = i),
+            onChanged: (i) => onChange(i),
           ),
         ]),
       ],

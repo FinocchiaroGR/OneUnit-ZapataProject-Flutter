@@ -32,23 +32,21 @@ class _CarLocationState extends State<CarLocation> {
   late bool error = false;
   late double latitude;
   late double longitude;
-  late double circleRadius = 10;
-  late double carVelocity;
-  late double geofenceValue = 0;
-  late double velocityValue = 10;
+  late double? geofenceValue;
+  late double? carVelocity;
   late bool active = false;
   Timer? timer;
 
-  late int? id = Provider.of<UserProvider>(context, listen: false).getIdGPS();
+  late int? carId = Provider.of<UserProvider>(context, listen: false).getIdGPS();
   late String? token =
       Provider.of<UserProvider>(context, listen: false).getToken();
 
   @override
   void initState() {
     super.initState();
-    fetchData(id, token);
+    fetchData(carId, token);
     timer = Timer.periodic(
-        const Duration(seconds: 15), (Timer t) => update(id, token));
+        const Duration(seconds: 15), (Timer t) => update(carId, token));
   }
 
   @override
@@ -69,8 +67,8 @@ class _CarLocationState extends State<CarLocation> {
       setState(() {
         latitude = jsonDecode(gpsRes.body)["latitude"].toDouble();
         longitude = jsonDecode(gpsRes.body)["longitude"].toDouble();
-        //circleRadius = jsonDecode(gpsRes.body)["geofenceRadiusKm"] as double;
-        carVelocity = jsonDecode(gpsRes.body)["velocity"].toDouble();
+        carVelocity = jsonDecode(gpsRes.body)["velocity"] == null ? 10.0 : double.parse(jsonDecode(gpsRes.body)["velocity"].toString());
+        geofenceValue = jsonDecode(gpsRes.body)["geofenceRadiusKm"] == null ? 5.0 : double.parse(jsonDecode(gpsRes.body)["geofenceRadiusKm"].toString());
         error = false;
         loading = false;
       });
@@ -84,20 +82,27 @@ class _CarLocationState extends State<CarLocation> {
       setState(() {
         latitude = jsonDecode(gpsRes.body)["latitude"].toDouble();
         longitude = jsonDecode(gpsRes.body)["longitude"].toDouble();
-        //circleRadius = jsonDecode(gpsRes.body)["geofenceRadiusKm"] as double;
-        carVelocity = jsonDecode(gpsRes.body)["velocity"].toDouble();
+        carVelocity = jsonDecode(gpsRes.body)["velocity"] == null ? 10.0 : double.parse(jsonDecode(gpsRes.body)["velocity"].toString());
+        geofenceValue = jsonDecode(gpsRes.body)["geofenceRadiusKm"] == null ? 5.0 : double.parse(jsonDecode(gpsRes.body)["geofenceRadiusKm"].toString());
         error = false;
         loading = false;
       });
     }
   }
 
-  Future<void> _showLimitsModal(BuildContext context) {
+  void updateActiveGeofence (geofence) async {
+    setState(() {
+      geofenceValue = geofence;
+    });
+  }
+
+  Future<void> _showLimitsModal(BuildContext context, int id, String token) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) => AppLimitsModal(
-        geofenceValue: geofenceValue,
-        velocityValue: velocityValue,
+        token: token,
+        carId: carId!,
+        onGeofenceChanged: updateActiveGeofence
       ),
     );
   }
@@ -134,16 +139,20 @@ class _CarLocationState extends State<CarLocation> {
                           AppLocationMap(
                             latitude: latitude,
                             longitude: longitude,
-                            circleRadius: circleRadius,
+                            circleRadius: geofenceValue!,
                             carName:
                                 "${list.cars[arguments["idCar"]].brandName} ${list.cars[arguments["idCar"]].modelYear}",
                           ),
-                          const Positioned(
+                          Positioned(
                             bottom: 24,
                             right: 24,
                             left: 24,
                             child:
-                                AppSwitch(), // My cards showing in front of the Map's
+                                AppSwitch(
+                                  carId: carId, 
+                                  token: token,
+                                  geofenceValue: geofenceValue,
+                                ), // My cards showing in front of the Map's
                           ),
                           Positioned(
                             top: 24,
@@ -154,7 +163,7 @@ class _CarLocationState extends State<CarLocation> {
                                 const SizedBox(height: 8),
                                 AppRoundButton(
                                     text: "Edit",
-                                    onPressed: () => _showLimitsModal(context)),
+                                    onPressed: () => _showLimitsModal(context, carId!, token!)),
                               ],
                             ),
                           ),
