@@ -117,7 +117,8 @@ class _StatefulAppCarouselState extends State<AppCarousel> {
                         app_urls.carLocation,
                         arguments: {
                           "idCar": _id,
-                          "idGPS": list.cars[_id].idGPS
+                          "idGPS": list.cars[_id].idGPS,
+                          "token": list.token.toString()
                         },
                       );
                       Provider.of<UserProvider>(context, listen: false)
