@@ -9,6 +9,9 @@ class AppLocationMap extends StatefulWidget {
   final double circleRadius;
   final double latitude;
   final double longitude;
+  final double geoFenceLatitude;
+  final double geoFenceLongitude;
+  final bool geofenceActive;
   final String carName;
 
   const AppLocationMap({
@@ -18,6 +21,9 @@ class AppLocationMap extends StatefulWidget {
     required this.latitude,
     required this.longitude,
     required this.carName,
+    required this.geoFenceLatitude,
+    required this.geoFenceLongitude,
+    required this.geofenceActive
   });
 
   @override
@@ -35,6 +41,7 @@ class _AppLocationMapState extends State<AppLocationMap> {
   @override
   Widget build(BuildContext context) {
     final LatLng center = LatLng(widget.latitude, widget.longitude);
+    final LatLng geofenceCenter = LatLng(widget.geoFenceLatitude, widget.geoFenceLongitude);
     final Marker marker = Marker(
       markerId: MarkerId(widget.carName),
       position: center,
@@ -62,10 +69,10 @@ class _AppLocationMapState extends State<AppLocationMap> {
       circles: {
         Circle(
           circleId: const CircleId("wall"),
-          center: center,
-          radius: widget.circleRadius,
-          fillColor: app_colors.shadow,
-          strokeWidth: 1,
+          center: geofenceCenter,
+          radius: widget.circleRadius * 500,
+          fillColor: widget.geofenceActive ? app_colors.shadow : app_colors.shadow.withOpacity(0),
+          strokeWidth: widget.geofenceActive ? 3 : 0,
         ),
       },
     );
