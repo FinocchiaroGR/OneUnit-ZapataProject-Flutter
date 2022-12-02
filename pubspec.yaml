@@ -18,9 +18,9 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
 version: 1.0.0+1
-
+ 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: '>=2.18.2 <3.0.0' 
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -39,7 +39,15 @@ dependencies:
   provider: ^6.0.0
   carousel_slider: ^4.1.1
   animated_toggle_switch: ^0.5.2
-  google_maps_flutter: ^2.2.1
+  google_maps_flutter: 
+  url_launcher: ^6.1.6
+  http: ^0.13.5
+  modal_progress_hud_nsn: ^0.3.0
+  flutter_spinkit: ^5.1.0
+  intl: ^0.17.0
+
+  flutter_localizations: # Add this line
+    sdk: flutter         # Add this line
 
 dev_dependencies:
   flutter_test:
@@ -80,19 +88,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Helvetica
+    - family: Monteserrat
       fonts:
-        - asset: assets/fonts/Helvetica/Bold/HelveticaNeueCyr-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Helvetica/BoldItalic/HelveticaNeueCyr-BoldItalic.ttf
-          weight: 700
-          style: italic
-        - asset: assets/fonts/Helvetica/Italic/HelveticaNeueCyr-Italic.ttf
-          style: italic
-        - asset: assets/fonts/Helvetica/Light/HelveticaNeueCyr-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Helvetica/Medium/HelveticaNeueCyr-Medium.ttf
-          weight: 500
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-Light.ttf
 
     - family: Browallia
       fonts:

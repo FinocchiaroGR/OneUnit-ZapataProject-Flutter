@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:app/widgets/atoms/Typography.dart';
+
 import 'package:app/styles/colors.dart' as app_colors;
 
 class AppIconButton extends StatelessWidget {
@@ -21,6 +23,7 @@ class AppIconButton extends StatelessWidget {
       onTap: onPressed,
       child: Ink(
         padding: const EdgeInsets.all(12),
+        width: 120,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           color: app_colors.primary,

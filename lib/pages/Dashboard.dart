@@ -1,25 +1,49 @@
+import 'package:app/providers/UserProvider.dart';
 import 'package:flutter/material.dart';
 
-import 'package:app/widgets/atoms/Button.dart';
+import 'package:app/widgets/organisms/Page.dart';
+import 'package:app/widgets/organisms/Carousel.dart';
 
-import 'package:app/consts/urls.dart' as app_urls;
+import 'package:app/consts/images.dart' as app_images;
+import 'package:provider/provider.dart';
+
+const dummyCarSlides = [
+  {
+    'src': app_images.logo,
+    'name': 'OneUnit',
+  },
+  {
+    'src': "https://picsum.photos/200/300",
+    'name': 'Zapata',
+  },
+  {
+    'src': app_images.carPlaceholder,
+    'name': 'Connect',
+  },
+  {
+    'src': app_images.carPlaceholder,
+    'name': 'For clients',
+  },
+];
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppButton(
-          text: "go to showcase",
-          onPressed: () =>
-              Navigator.pushNamed(context, app_urls.componentsShowcase),
-        ),
-        AppButton(
-          text: "go to car location",
-          onPressed: () => Navigator.pushNamed(context, app_urls.carLocation),
-        ),
-      ],
+    return Consumer<UserProvider>(
+      builder: (context, cars, child) {
+        return AppPage(
+          title: "Bienvenido",
+          navigationCurrentIndex: 1,
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              AppCarousel(cars: cars.cars),
+            ],
+          ),
+        );
+      },
     );
   }
 }

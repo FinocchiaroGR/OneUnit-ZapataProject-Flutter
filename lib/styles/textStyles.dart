@@ -1,7 +1,10 @@
-import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 
-import './colors.dart' as appColors;
+const hx = TextStyle(
+  fontSize: 68,
+  fontFamily: 'Browallia',
+  fontWeight: FontWeight.w700,
+);
 
 const h1 = TextStyle(
   fontSize: 52,
@@ -23,18 +26,21 @@ const h3 = TextStyle(
 
 const subtitle = TextStyle(
   fontSize: 28,
-  fontFamily: 'Helvetica',
+  fontFamily: 'Montserrat',
   height: 1.2,
+  fontWeight: FontWeight.w300,
 );
 
 const body1 = TextStyle(
   fontSize: 20,
-  fontFamily: 'Helvetica',
+  fontFamily: 'Montserrat',
   height: 1.4,
+  fontWeight: FontWeight.w300,
 );
 
 const body2 = TextStyle(
   fontSize: 16,
-  fontFamily: 'Helvetica',
+  fontFamily: 'Montserrat',
   height: 1.3,
+  fontWeight: FontWeight.w300,
 );

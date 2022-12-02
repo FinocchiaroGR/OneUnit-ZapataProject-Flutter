@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:app/consts/urls.dart' as app_urls;
 import "package:app/styles/icons.dart" as app_icons;
 import "package:app/styles/colors.dart" as app_colors;
@@ -18,7 +19,7 @@ class _AppBottomNavigationState extends State<AppBottomNavigation> {
   static const Map<int, String> _pagesMap = {
     0: app_urls.userInfo,
     1: app_urls.home,
-    2: app_urls.componentsShowcase,
+    2: app_urls.faqs,
   };
 
   void _onItemTapped(int index) {
