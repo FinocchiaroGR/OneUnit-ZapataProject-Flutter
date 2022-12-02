@@ -32,6 +32,9 @@ class _CarLocationState extends State<CarLocation> {
   late bool error = false;
   late double latitude;
   late double longitude;
+  late double geoFenceLatitude;
+  late double geoFenceLongitude;
+  late bool geofenceActive = false;
   late double? geofenceValue;
   late double? carVelocity;
   late bool active = false;
@@ -67,6 +70,9 @@ class _CarLocationState extends State<CarLocation> {
       setState(() {
         latitude = jsonDecode(gpsRes.body)["latitude"].toDouble();
         longitude = jsonDecode(gpsRes.body)["longitude"].toDouble();
+        geoFenceLatitude = jsonDecode(gpsRes.body)["geofenceLat"] ?? latitude;
+        geoFenceLongitude = jsonDecode(gpsRes.body)["geofenceLong"] ?? longitude;
+        geofenceActive = jsonDecode(gpsRes.body)["geofenceActive"];
         carVelocity = jsonDecode(gpsRes.body)["velocity"] == null ? 10.0 : double.parse(jsonDecode(gpsRes.body)["velocity"].toString());
         geofenceValue = jsonDecode(gpsRes.body)["geofenceRadiusKm"] == null ? 5.0 : double.parse(jsonDecode(gpsRes.body)["geofenceRadiusKm"].toString());
         error = false;
@@ -77,11 +83,13 @@ class _CarLocationState extends State<CarLocation> {
 
   void update(int? id, String? token) async {
     var gpsRes = await gpsHandler.getGpsInfo(id!, token!);
-
     if (gpsRes != null) {
       setState(() {
         latitude = jsonDecode(gpsRes.body)["latitude"].toDouble();
         longitude = jsonDecode(gpsRes.body)["longitude"].toDouble();
+        geoFenceLatitude = jsonDecode(gpsRes.body)["geofenceLat"] ?? latitude;
+        geoFenceLongitude = jsonDecode(gpsRes.body)["geofenceLong"] ?? longitude;
+        geofenceActive = jsonDecode(gpsRes.body)["geofenceActive"];
         carVelocity = jsonDecode(gpsRes.body)["velocity"] == null ? 10.0 : double.parse(jsonDecode(gpsRes.body)["velocity"].toString());
         geofenceValue = jsonDecode(gpsRes.body)["geofenceRadiusKm"] == null ? 5.0 : double.parse(jsonDecode(gpsRes.body)["geofenceRadiusKm"].toString());
         error = false;
@@ -93,6 +101,12 @@ class _CarLocationState extends State<CarLocation> {
   void updateActiveGeofence (geofence) async {
     setState(() {
       geofenceValue = geofence;
+    });
+  }
+
+  void isGeofenceOn (int switchValue) async {
+    setState(() {
+      geofenceActive = switchValue == 2 ? true: false;
     });
   }
 
@@ -139,6 +153,9 @@ class _CarLocationState extends State<CarLocation> {
                           AppLocationMap(
                             latitude: latitude,
                             longitude: longitude,
+                            geoFenceLatitude: geoFenceLatitude,
+                            geoFenceLongitude: geoFenceLongitude,
+                            geofenceActive: geofenceActive,
                             circleRadius: geofenceValue!,
                             carName:
                                 "${list.cars[arguments["idCar"]].brandName} ${list.cars[arguments["idCar"]].modelYear}",
@@ -152,6 +169,8 @@ class _CarLocationState extends State<CarLocation> {
                                   carId: carId, 
                                   token: token,
                                   geofenceValue: geofenceValue,
+                                  geofenceActive: geofenceActive,
+                                  onValueChanged: isGeofenceOn
                                 ), // My cards showing in front of the Map's
                           ),
                           Positioned(
