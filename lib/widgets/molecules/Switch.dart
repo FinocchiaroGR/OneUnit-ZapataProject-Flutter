@@ -5,16 +5,22 @@ import 'package:app/widgets/atoms/Typography.dart';
 import 'package:app/styles/colors.dart' as app_colors;
 import 'package:app/api/ApiGps.dart';
 
+typedef void SwitchCallback(int val);
+
 class AppSwitch extends StatefulWidget {
   final int? carId;
   final String? token;
   final double? geofenceValue;
+  final bool geofenceActive;
+  final SwitchCallback onValueChanged;
 
   const AppSwitch({
     super.key,
     required this.carId,
     required this.token,
-    required this.geofenceValue
+    required this.geofenceValue,
+    required this.onValueChanged,
+    required this.geofenceActive
   });
 
   @override
@@ -29,14 +35,25 @@ class _AppSwitchState extends State<AppSwitch> {
   @override
   void initState() {
     super.initState();
+    setSwitchState();
+  }
+
+  void setSwitchState() async {
+    if (widget.geofenceActive) {
+      switchColor = Color.fromARGB(255, 24, 117, 24);
+      setState(() => 
+        value = widget.geofenceValue == 0 ? 0 : 2
+      );
+    }
   }
 
   void onChange(val) {
     setState(() => value = val);
+    widget.onValueChanged(val);
     if (val == 0) {
-      activateGeofence(widget.carId!, widget.token!, widget.geofenceValue!.toInt());
-    } else if (val == 2) {
       activateGeofence(widget.carId!, widget.token!, 0);
+    } else if (val == 2) {
+      activateGeofence(widget.carId!, widget.token!, widget.geofenceValue!.toInt() == 0 ? 1 : widget.geofenceValue!.toInt());
     } else {
       deactivateGeofence(widget.carId!, widget.token!);
     }
